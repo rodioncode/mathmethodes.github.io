@@ -1,0 +1,501 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Графический метод решения задач линейного программирования &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="2. Симплекс метод" href="simplex.html"/>
+        <link rel="prev" title="Главная страница" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Графический метод решения задач линейного программирования</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1. Теоретические основы решения задач линейного программирования графическим методом</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.1.1. Основные понятия и определения линейного программирования</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.1.2. Теоретические основы графического метода решения задач линейного программирования</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.1.3. Алгоритм решения задачи ЛП графическим методом</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.2. Практическое применение графического метода решения задач линейного программирования</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">1.2.1. Пример решения задач линейного программирования графическим методом</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">1.3. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simplex.html">2. Симплекс метод</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">3. Транспортная задача</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimal.html">4. Задача о распределении средств</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maxflow.html">5. Задача о максимальном потоке</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gametheory.html">6. Теория игр</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. Графический метод решения задач линейного программирования</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/graph.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="simplex.html" class="btn btn-neutral float-right" title="2. Симплекс метод" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Главная страница" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>1. Графический метод решения задач линейного программирования<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>1.1. Теоретические основы решения задач линейного программирования графическим методом<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id3">
+<h3>1.1.1. Основные понятия и определения линейного программирования<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Линейное программирование (ЛП) – раздел математического
+программирования, в котором изучаются методы решения задач на нахождение
+экстремальных (наибольших и наименьших) значений линейной функции
+конечного числа переменных, на неизвестные которой наложены линейные
+ограничения.</p>
+<p>Линейная функция называется целевой, а ограничения, которые представляют
+количественные соотношения между переменными, выражающие условия и
+требования экономической задачи и математически записываются в виде
+уравнений или неравенств, называются системой ограничений.</p>
+<p>С помощью задач линейного программирования решается широкий круг
+вопросов планирования экономических процессов, где ставится цель поиска
+наилучшего решения. В качестве целевой функции могут рассматриваться,
+например, прибыль от реализации (должна быть максимальной) или издержки
+производства (должны быть минимальными).</p>
+<p>Математическое выражение целевой функции и ее ограничений называется
+математической моделью экономической задачи и записывается в общем виде
+как</p>
+<p>L(<span class="math notranslate nohighlight">\({\overline{x}}\)</span>)=<span class="math notranslate nohighlight">\({c_1x_1+c_2x_2+...+c_{ij}x_{ij}+...+c_nx_n}\)</span><span class="math notranslate nohighlight">\(\rightarrow{max(min)}\)</span></p>
+<p>при ограничениях:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           {a_{11}x_1+a_{12}x_2+...+a_{1j}x_j+...+a_{1n}x_n=b_1},\\
+           {a_{21}x_1+a_{22}x_2+...+a_{2j}x_j+...+a_{2n}x_n=b_2},\\
+           .....................................................,\\
+           {a_{i1}x_1+a_{i2}x_2+...+a_{ij}x_j+...+a_{in}x_n=b_i},\\
+           .....................................................,\\
+           {a_{m1}x_1+a_{m2}x_2+...+a_{mj}x_j+...+a_{mn}x_n=b_m},\\[0.4cm]
+        \end{cases}\end{split}\]</div>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x_j{\geq}0\)</span>; <span class="math notranslate nohighlight">\({\qquad}\)</span> i=<span class="math notranslate nohighlight">\({\overline{1,m}}\)</span>;
+<span class="math notranslate nohighlight">\({\qquad}\)</span> j=<span class="math notranslate nohighlight">\({\overline{1,n}}\)</span>,</div>
+</div>
+<p>где <span class="math notranslate nohighlight">\(x_j\)</span> — неизвестные; <span class="math notranslate nohighlight">\(a_{ij}\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span>, <span class="math notranslate nohighlight">\(c_j\)</span>
+— заданные постоянные величины. Все или некоторые уравнения системы
+ограничений могут быть записаны также в виде неравенств. Математическая
+модель в более краткой записи имеет вид:</p>
+<div class="line-block">
+<div class="line">L(<span class="math notranslate nohighlight">\({\overline{x}}\)</span>)=<span class="math notranslate nohighlight">\({ \sum_{j=1}^n c_{j}x_{j} }\)</span><span class="math notranslate nohighlight">\(\rightarrow{max(min)}\)</span></div>
+</div>
+<p>при ограничениях:</p>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\({ \sum_{j=1}^n a_{ij}x_{j}}\)</span>=<span class="math notranslate nohighlight">\(b_{i}\)</span></div>
+</div>
+<p>Совокупность значений неизвестных (<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, …,
+<span class="math notranslate nohighlight">\(x_n\)</span>), удовлетворяющих системе ограничений, называется допустимым
+решением, или планом задачи линейного программирования, а ограничения
+определяют область допустимых решений (ОДР). Допустимое решение задачи
+линейного программирования называется оптимальным, если оно обеспечивает
+максимальное (минимальное) значение целевой функции.</p>
+<p>Если все ограничения заданы уравнениями и переменные<span class="math notranslate nohighlight">\(x_j\)</span>
+неотрицательные, то модель называется канонической. Если хотя бы одно
+ограничение является неравенством, то модель называется неканонической.</p>
+<div class="line-block">
+<div class="line">Для составления математической модели необходимо:</div>
+<div class="line">1) Обозначить переменные.</div>
+<div class="line">2) Составить целевую функцию исходя из цели задачи.</div>
+<div class="line">3) Записать систему ограничений, учитывая имеющие в условии задачи
+показатели и их количественные закономерности.</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>1.1.2. Теоретические основы графического метода решения задач линейного программирования<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Наиболее простым и наглядным методом решения задач линейного
+программирования является графический метод. Он применяется для задач
+линейного программирования с двумя переменными, когда ограничения
+выражены неравенствами, и задач со многими переменными при условии, что
+в их канонической записи содержится не более двух свободных переменных.</p>
+<p>Графический метод основан на геометрическом представлении допустимых
+решений и целевой функции задачи. Каждое из неравенств задачи линейного
+программирования определяет на координатной плоскости (<span class="math notranslate nohighlight">\(x_1\)</span>,
+<span class="math notranslate nohighlight">\(x_2\)</span>) некоторую полуплоскость. Пересечение этих полуплоскостей
+задает область допустимых решений (ОДР), то есть любая точка из этой
+области является решением системы ограничений.</p>
+<p>В общем случае область допустимых решений может быть представлена одной
+из следующих фигур: выпуклым многоугольником, неограниченной
+многоугольной областью, лучом, отрезком, точкой или пустой областью. В
+последнем случае говорят, что ограничения не совместны. Если система
+ограничений включает равенства, то они определяют на координатной
+плоскости (<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>) прямую линию. Область допустимых
+решений всегда представляет собой выпуклую фигуру.</p>
+<div class="figure align-center">
+<img alt="_images/4.png" src="_images/4.png" />
+</div>
+<p>С геометрической точки зрения в задаче линейного программирования ищется
+такая угловая точка или набор точек из допустимого множества решений, на
+которой достигается самая верхняя (нижняя) линия уровня, расположенная
+дальше (ближе) остальных в направлении наискорейшего роста.</p>
+<p>Целевая функция задачи линейного программирования при фиксированном
+значении L определяет на плоскости прямую линию
+L=<span class="math notranslate nohighlight">\({c_1x_1+c_2x_2}\)</span>. Изменяя значения L, получим семейство
+параллельных прямых, называемых линиями уровня.</p>
+<div class="line-block">
+<div class="line">Для нахождения экстремального значения целевой функции используют
+вектор <span class="math notranslate nohighlight">\({\overrightarrow{grad}}\)</span> L=<span class="math notranslate nohighlight">\({\overline{C}}\)</span> на
+плоскости <span class="math notranslate nohighlight">\(X_1\)</span>O<span class="math notranslate nohighlight">\(X_2\)</span>, который показывает направление
+наискорейшего изменения целевой функции, он равен:</div>
+</div>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\({\overrightarrow{grad}}\)</span>
+L=<span class="math notranslate nohighlight">\({\overline{C}}\)</span>=<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial x_1} \bar{e_1}\)</span>+<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial x_2} \bar{e_2}\)</span>,</div>
+</div>
+<p>где <span class="math notranslate nohighlight">\(e_1\)</span> и <span class="math notranslate nohighlight">\(e_2\)</span> — единичные векторы по осям О<span class="math notranslate nohighlight">\(X_1\)</span>
+и О<span class="math notranslate nohighlight">\(X_2\)</span>. Таким образом,</p>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\({\overline{C}}\)</span>=(<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial x_1}\)</span>,<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial x_2}\)</span>).</div>
+</div>
+<p>Координатами вектора <span class="math notranslate nohighlight">\({\overline{C}}\)</span> являются коэффициенты
+целевой функции L(x).</p>
+</div>
+<div class="section" id="id5">
+<h3>1.1.3. Алгоритм решения задачи ЛП графическим методом<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>1. Находим область допустимых решений системы
+ограничений задачи.</p>
+<p>Для этого каждое из неравенств системы заменяем равенством и строим
+соответствующие этим равенствам граничные прямые. Каждая из построенных
+прямых делит плоскость на две полуплоскости. Чтобы графически
+определить, по какую сторону от граничной прямой располагается
+полуплоскость, содержащая решения, удовлетворяющие рассматриваемому
+неравенству, достаточно проверить одну какую-либо точку, не лежащую на
+прямой (например (0,0)). Если при подстановке ее координат в левую часть
+неравенства оно выполняется, то надо заштриховать полуплоскость,
+содержащую данную точку. Если же неравенство не выполняется, надо
+заштриховать полуплоскость, не содержащую данную точку. Отмечаем общую
+область для всех неравенств. Таким образом, получим область допустимых
+решений рассматриваемой задачи ЛП.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>2. Формируем графическое изображение целевой функции.</p>
+<p>Приравняем целевую функцию к постоянной величине L:
+L=<span class="math notranslate nohighlight">\({c_1x_1+c_2x_2}\)</span>. Это уравнение при фиксированном значении L
+определяет прямую, а при изменении L семейство параллельных прямых,
+каждая из которых называется линией уровня. Проводим линию уровня
+<span class="math notranslate nohighlight">\({L_0}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>3. Определяем направление возрастания целевой функции
+(вектор <span class="math notranslate nohighlight">\({\overline{C}}\)</span>).</p>
+<p>Для определения направления максимального возрастания значения целевой
+функции строим вектор-градиент целевой функции, который начинается в
+точке (0,0), заканчивается в точке (<span class="math notranslate nohighlight">\({c_1x_1,c_2x_2}\)</span>). Если линия
+уровня и вектор-градиент построены верно, то они будут перпендикулярны.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>4. Находим оптимальное решение задачи ЛП.</p>
+<p>Линию уровня перемещаем по направлению вектора <span class="math notranslate nohighlight">\({\overline{C}}\)</span>
+для задач на максимум и в направлении, противоположном
+<span class="math notranslate nohighlight">\({\overline{C}}\)</span>, для задач на минимум. Перемещение линии уровня
+производится до тех пор, пока у нее окажется только одна общая точка с
+областью допустимых решений (ОДР). Эта точка определяет единственное
+решение задачи ЛП и будет точкой экстремума. Если окажется, что линия
+уровня параллельна одной из сторон ОДР, то задача ЛП будет иметь
+бесчисленное множество решений. Если ОДР представляет неограниченную
+область, то целевая функция может быть неограниченна. Задача ЛП может
+быть неразрешима, когда определяющие ее ограничения окажутся
+противоречивыми.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>5. Находим координаты точки экстремума и значение
+целевой функции в этой точке.</p>
+<p>Для вычисления координат оптимальной точки решим систему уравнений
+прямых, на пересечении которых находится эта точка. Подставляя найденный
+результат в целевую функцию, получим искомое оптимальное значение
+целевой функции.</p>
+<div class="figure align-center">
+<img alt="_images/5.png" src="_images/5.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>1.2. Практическое применение графического метода решения задач линейного программирования<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id7">
+<h3>1.2.1. Пример решения задач линейного программирования графическим методом<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Пример:</strong> Найти наибольшее значение функции L=<span class="math notranslate nohighlight">\({x_1+x_2}\)</span> при
+ограничениях:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           {x_1+3x_2} \leq 6,\\
+           {2x_1+x_2} \leq 8,\\
+        \end{cases}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(x_1 \geq 0\)</span> <span class="math notranslate nohighlight">\(\qquad\)</span> <span class="math notranslate nohighlight">\(x_2 \geq 0\)</span>.</p>
+<p><strong>Решение:</strong> 1) Рассмотрим первое неравенство системы ограничений.</p>
+<p><span class="math notranslate nohighlight">\({x_1+3x_2}\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 6</p>
+<p>Построим прямую: <span class="math notranslate nohighlight">\({x_1+3x_2}\)</span>=6.</p>
+<div class="figure align-center">
+<img alt="_images/1.png" src="_images/1.png" />
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Рассмотрим второе неравенство системы ограничений.</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\({2x_1+x_2}\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 8</p>
+<p>Построим прямую: <span class="math notranslate nohighlight">\({2x_1+x_2}\)</span>=8.</p>
+<div class="figure align-center">
+<img alt="_images/2.png" src="_images/2.png" />
+</div>
+<p>3) Строим вектор <span class="math notranslate nohighlight">\({\overline{C}}\)</span>(1;1), координатами которого
+являются коэффициенты функции L.</p>
+<p>4) Перемещаем линию уровня (красную прямую), перпендикулярно данному
+вектору, от левого нижнего угла к правому верхнему.</p>
+<p>В точке, в которой линия уровня в первый раз пересечет область
+допустимых решений, функция L достигает своего наименьшего значения.</p>
+<div class="figure align-center">
+<img alt="_images/3.png" src="_images/3.png" />
+</div>
+<p>В точке, в которой линия уровня в последний раз пересечет область
+допустимых решений, функция L достигает своего наибольшего значения.</p>
+<p>Функция L достигает наибольшего значения в точке A.</p>
+<p>Точка A одновременно принадлежит прямым (1) и (2). Составим систему
+уравнений:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           {x_1+3x_2}=6,\\
+           {2x_1+x_2}=8,\\
+        \end{cases}\end{split}\]</div>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\({x_1}=\frac{18}{5}\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\({x_2}=\frac{4}{5}\)</span></div>
+</div>
+<p>Вычислим значение функции L в точке
+A(<span class="math notranslate nohighlight">\(\frac{18}{5};\frac{4}{5}\)</span>).</p>
+<p>L(A) = 1*<span class="math notranslate nohighlight">\(\frac{18}{5}\)</span> +
+1*<span class="math notranslate nohighlight">\(\frac{4}{5}\)</span>=<span class="math notranslate nohighlight">\(\frac{22}{5}\)</span>.</p>
+<p><strong>Ответ:</strong> <span class="math notranslate nohighlight">\({x_1}=\frac{18}{5}\)</span>; <span class="math notranslate nohighlight">\({x_2}=\frac{4}{5}\)</span>;
+<span class="math notranslate nohighlight">\({L_{max}}=\frac{22}{5}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>1.3. Перейти к практике<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simplex.html" class="btn btn-neutral float-right" title="2. Симплекс метод" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Главная страница" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

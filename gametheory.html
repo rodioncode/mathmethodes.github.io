@@ -1,0 +1,957 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Теория игр &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="7. Методическое пособие" href="main.html"/>
+        <link rel="prev" title="5. Задача о максимальном потоке" href="maxflow.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graph.html">1. Графический метод решения задач линейного программирования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplex.html">2. Симплекс метод</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">3. Транспортная задача</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimal.html">4. Задача о распределении средств</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maxflow.html">5. Задача о максимальном потоке</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Теория игр</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.1. Элементы теории игр</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.1.1. Матричные игры с нулевой суммой. Платежная матрица игры</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.1.2. Нижняя и верхняя цена игры. Принцип минимакса</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">6.2. Игры с седловой точкой</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">6.3. Игры без седловой точки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">6.4. Игры, повторяемые многократно. Смешанные стратегии</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#times2">6.5. Аналитический метод решения игры типа 2<span class="math notranslate nohighlight">\(\times\)</span>2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timesn-m-times2">6.6. Графический метод решения игр типа 2<span class="math notranslate nohighlight">\(\times\)</span>n и m<span class="math notranslate nohighlight">\(\times\)</span>2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.7. Практическое применение теории игр</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">6.7.1. Пример решения задачи теории игр</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">6.8. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6. Теория игр</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gametheory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="main.html" class="btn btn-neutral float-right" title="7. Методическое пособие" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="maxflow.html" class="btn btn-neutral" title="5. Задача о максимальном потоке" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>6. Теория игр<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>6.1. Элементы теории игр<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id3">
+<h3>6.1.1. Матричные игры с нулевой суммой. Платежная матрица игры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Во многих практических задачах возникают ситуации, когда требуется
+принять решение, не имея достаточной информации. Неизвестными могут быть
+как условия осуществления какой-либо операции, так и сознательные
+действия лиц, от которых зависит успех этой операции.</p>
+<ul>
+<li><p>Ситуации, в которых сталкиваются интересы двух сторон и результат
+любой операции, осуществляемой одной из сторон, зависит от действий
+другой стороны, называются конфликтными;</p></li>
+<li><p>Математическая модель конфликтной ситуации называется игрой, а
+математическая теория, помогающая принимать рациональные решения в
+конфликтной ситуации, - теорией игр;</p></li>
+<li><p>Конфликтующие стороны называются игроками, а действия, которые могут
+выполнять игроки, - стратегиями;</p>
+<p>От реальной ситуации игра отличается тем, что в игре противники
+действуют по строго определенным правилам.</p>
+</li>
+<li><div class="line-block">
+<div class="line">Матричной игрой называется игра, осуществляемая по следующим
+правилам:</div>
+<div class="line">1. В игре участвуют два игрока;</div>
+<div class="line">2. Каждый из игроков обладает конечным набором стратегий;</div>
+<div class="line">3. Игра заключается в том, что каждый из игроков, не имея
+информации о действиях противника, делает один ход (выбирает одну
+из своих стратегий). Результатом выбора игроками стратегий является
+выигрыш и проигрыш в игре.</div>
+<div class="line">4. И выигрыш, и проигрыш выражаются числами.</div>
+</div>
+</li>
+<li><p>Матричная игра называется игрой с нулевой суммой, если в этой игре
+выигрыш одного игрока равняется проигрышу другого игрока.</p>
+<p>Каждая матричная игра с нулевой суммой имеет платежную матрицу. Для
+того чтобы построить эту матрицу, обозначим одного из игроков
+символом A, а другого - символом B, и предположим, что <span class="math notranslate nohighlight">\(A_1\)</span>,
+<span class="math notranslate nohighlight">\(A_2\)</span>, …, <span class="math notranslate nohighlight">\(A_m\)</span> - стратегии, которые может применять
+игрок A, а <span class="math notranslate nohighlight">\(B_1\)</span>, <span class="math notranslate nohighlight">\(B_2\)</span>, …, <span class="math notranslate nohighlight">\(B_n\)</span> - стратегии,
+которые может применять игрок B.</p>
+</li>
+<li><p>Матричная игра, в которой у игрока A имеется m стратегий, а у игрока
+B - n стратегий, называется игрой типа m<span class="math notranslate nohighlight">\(\times\)</span>n.</p>
+<p>Рассмотрим матрицу</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            c_{11} &amp; c_{12} &amp; \ldots &amp; c_{1n}\\
+            c_{21} &amp; c_{22} &amp; \ldots &amp; c_{2n}\\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+            c_{m1} &amp; c_{m2} &amp; \ldots &amp; c_{mn}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>у которой элементы <span class="math notranslate nohighlight">\(c_{ij}\)</span> (i=1,2,…,m; j=1,2,…,n) равны
+выигрышам игрока A (и проигрышам игрока B) при применении игроками
+стратегий <span class="math notranslate nohighlight">\(A_i\)</span> и <span class="math notranslate nohighlight">\(B_j\)</span> соответственно.</p>
+</li>
+<li><p>Матрица C называется платежной матрицей игры.</p></li>
+</ul>
+<p><strong>Пример:</strong></p>
+<p>Игра, называемая «Открывание пальцев», заключается в следующем. Два
+игрока одновременно из сжатого кулака правой руки открывают по нескольку
+пальцев. Общее количество открытых пальцев является суммой выигрыша,
+причем, если общее количество открытых пальцев четно, то выигрывает
+первый игрок, если же общее количество открытых пальцев нечетно, то
+выигрывает второй игрок.</p>
+<p>Составить платежную матрицу игры.</p>
+<p><strong>Решение:</strong></p>
+<p>Поскольку каждый из игроков может открыть 1, 2, 3, 4 или 5 пальцев, то у
+каждого из них имеется по 5 соответствующих стратегий: стратегии
+<span class="math notranslate nohighlight">\(A_1\)</span>,<span class="math notranslate nohighlight">\(A_2\)</span>,<span class="math notranslate nohighlight">\(A_3\)</span>,<span class="math notranslate nohighlight">\(A_4\)</span>,<span class="math notranslate nohighlight">\(A_5\)</span> у
+первого игрока,и
+<span class="math notranslate nohighlight">\(B_1\)</span>,<span class="math notranslate nohighlight">\(B_2\)</span>,<span class="math notranslate nohighlight">\(B_3\)</span>,<span class="math notranslate nohighlight">\(B_4\)</span>,<span class="math notranslate nohighlight">\(B_5\)</span> - у
+второго. Таким образом, рассматриваемая игра является матричной игрой
+типа 5<span class="math notranslate nohighlight">\(\times\)</span>5, и можно составить таблицу выигрышей, в
+зависимости от стратегий, применяемых игроками (Таблица 1):</p>
+<p><em>Таблица 1</em></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(B_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B_3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B_4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B_5\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_1\)</span></p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_2\)</span></p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_3\)</span></p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_4\)</span></p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_5\)</span></p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+<td><p>9</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<p>Из таблицы 1 следует, что платежная матрица игры имеет вид</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{ccccc}
+            2 &amp; 3 &amp; 4 &amp; 5 &amp; 6\\
+            3 &amp; 4 &amp; 5 &amp; 6 &amp; 7\\
+            4 &amp; 5 &amp; 6 &amp; 7 &amp; 8\\
+            5 &amp; 6 &amp; 7 &amp; 8 &amp; 9\\
+            6 &amp; 7 &amp; 8 &amp; 9 &amp; 10
+        \end{array}
+        \right)\end{split}\]</div>
+</div>
+<div class="section" id="id4">
+<h3>6.1.2. Нижняя и верхняя цена игры. Принцип минимакса<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Рассмотрим матричную игру типа m<span class="math notranslate nohighlight">\(\times\)</span>n с платежной матрицей</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            c_{11} &amp; c_{12} &amp; \ldots &amp; c_{1n}\\
+            c_{21} &amp; c_{22} &amp; \ldots &amp; c_{2n}\\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+            c_{m1} &amp; c_{m2} &amp; \ldots &amp; c_{mn}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>Если игрок A выберет стратегию <span class="math notranslate nohighlight">\(A_i\)</span>, то все его возможные
+выигрыши будут элементами i-й строки матрицы C. В наихудшем для игрока A
+случае, когда игрок B применяет стратегию, соответствующую минимальному
+элементу этой строки, выигрыш игрока A будет равен числу min
+<span class="math notranslate nohighlight">\(c_{ij}\)</span>, 1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>n.</p>
+<p>Следовательно, для получения наибольшего выигрыша, игроку A нужно
+выбирать ту из стратегий, для которой число min <span class="math notranslate nohighlight">\(c_{ij}\)</span>
+(1:math:<cite>leq</cite>j<span class="math notranslate nohighlight">\(\leq\)</span>n) максимально.</p>
+<ul>
+<li><p>Число</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>=max min <span class="math notranslate nohighlight">\(c_{ij}\)</span>,
+1<span class="math notranslate nohighlight">\(\leq\)</span>i<span class="math notranslate nohighlight">\(\leq\)</span>m,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>n</p>
+</li>
+</ul>
+<p>называется нижней ценой игры, а стратегия игрока A, соответствующая
+наибольшему из чисел min <span class="math notranslate nohighlight">\(c_{ij}\)</span>
+(1:math:<cite>leq</cite>j<span class="math notranslate nohighlight">\(\leq\)</span>n), называется максиминной.</p>
+<p>Таким образом, если игрок A будет придерживаться максиминной стратегии,
+то ему гарантирован выигрыш, не меньший, чем <span class="math notranslate nohighlight">\(\alpha\)</span>, при любом
+поведении игрока В.</p>
+<p>Проанализируем теперь платежную матрицу с точки зрения игрока B,
+заинтересованного в том, чтобы игрок A выиграл, как можно меньше.</p>
+<p>Если игрок B выберет стратегию <span class="math notranslate nohighlight">\(B_j\)</span>, то все возможные выигрыши
+игрока A будут элементами j-го столбца платежной матрицы С. В наихудшем
+для игрока B случае, когда игрок A применяет стратегию, соответствующую
+максимальному элементу этого столбца, выигрыш игрока B будет равен числу
+max <span class="math notranslate nohighlight">\(c_{ij}\)</span> (1:math:<cite>leq</cite>i<span class="math notranslate nohighlight">\(\leq\)</span>m).</p>
+<p>Следовательно, игроку B нужно выбрать такую стратегию, для которой число
+max <span class="math notranslate nohighlight">\(c_{ij}\)</span> (1:math:<cite>leq</cite>i<span class="math notranslate nohighlight">\(\leq\)</span>m) минимально.</p>
+<ul>
+<li><p>Число</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span>=min max <span class="math notranslate nohighlight">\(c_{ij}\)</span>,
+1<span class="math notranslate nohighlight">\(\leq\)</span>i<span class="math notranslate nohighlight">\(\leq\)</span>m,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>n</p>
+</li>
+</ul>
+<p>называется верхней ценой игры, а стратегия игрока B, соответствующая
+наименьшему из чисел max <span class="math notranslate nohighlight">\(c_{ij}\)</span>
+(1:math:<cite>leq</cite>i<span class="math notranslate nohighlight">\(\leq\)</span>m), называется минимаксной.</p>
+<p>Таким образом, если игрок B применяет минимаксную стратегию, то игрок A
+не может выиграть больше, чем <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<ul class="simple">
+<li><p>Принцип осторожности, заставляющий игроков придерживаться максиминной
+и минимаксной стратегий соответственно, называют «Принципом
+минимакса», а минимаксную стратегию и максиминную стратегию называют
+общим термином «Минимаксные стратегии».</p></li>
+</ul>
+<p><strong>Пример:</strong></p>
+<p>Найти нижнюю и верхнюю цены игры с платежной матрицей.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            3 &amp; 2 &amp; 1 &amp; 4\\
+            10 &amp; 4 &amp; 3 &amp; 10\\
+            -2 &amp; 4 &amp; 1 &amp; 2
+        \end{array}
+        \right)\end{split}\]</div>
+<p><strong>Решение:</strong></p>
+<p>В каждой строке платежной матрицы найдем наименьший элемент, и запишем
+его справа от матрицы. В каждом столбце платежной матрицы найдем
+наибольший элемент, и запишем его снизу от матрицы. В результате получим
+таблицу</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(
+        \begin{array}{cccc}
+            3 &amp; 2 &amp; 1 &amp; 4 \\
+            10 &amp; 4 &amp; 3 &amp; 10 \\
+            -2 &amp; 4 &amp; 1 &amp; 2
+        \end{array}
+        \right)
+         \begin{array}{cc}
+            &amp; 1 \\
+            &amp;3 \\
+            &amp;-2
+        \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{array}{ccccccc}
+            10 &amp; 4 &amp; 3 &amp; 10 &amp;  &amp; &amp;
+        \end{array}\]</div>
+<p>Нижняя цена игры</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>=max{1,3,-2}=3.</p>
+<p>Верхняя цена игры</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span>=min{10,4,3,10}=3.</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>6.2. Игры с седловой точкой<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Игра называется игрой с седловой точкой, если ее нижняя и верхняя цены
+совпадают, то есть выполняется равенство</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>=max min <span class="math notranslate nohighlight">\(c_{ij}\)</span>=min max
+<span class="math notranslate nohighlight">\(c_{ij}\)</span>=<span class="math notranslate nohighlight">\(\beta\)</span>, 1<span class="math notranslate nohighlight">\(\leq\)</span>i<span class="math notranslate nohighlight">\(\leq\)</span>m,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>n</p>
+<p>Для игры с седловой точкой общее значение нижней и верхней цены игры</p>
+<p>V=<span class="math notranslate nohighlight">\(\alpha\)</span>=<span class="math notranslate nohighlight">\(\beta\)</span></p>
+<p>называется ценой игры.</p>
+<p>Замечание 1. В Примере нижняя и верхняя цены игры совпадают и равны 3,
+т.е. рассмотренная игра является игрой с седловой точкой.</p>
+<p>Замечание 2. Максиминной стратегией в Примере является стратегия
+<span class="math notranslate nohighlight">\(A_2\)</span>, минимаксной стратегией является стратегия <span class="math notranslate nohighlight">\(B_3\)</span>.</p>
+<p>Рассмотрим теперь для игры с седловой точкой такой элемент платежной
+матрицы <span class="math notranslate nohighlight">\(c_{i_0j_0}\)</span>, который соответствует минимаксным стратегиям
+<span class="math notranslate nohighlight">\(A_{i_0}\)</span> и <span class="math notranslate nohighlight">\(B_{j_0}\)</span>. Этот элемент является одновременно
+минимальным в своей строке и максимальным в своем столбце, и выполняются
+неравенства</p>
+<p>V=<span class="math notranslate nohighlight">\(\alpha\)</span>=max <span class="math notranslate nohighlight">\(c_{ij_0}\)</span>=min
+<span class="math notranslate nohighlight">\(c_{i_{0}j}\)</span>=<span class="math notranslate nohighlight">\(\beta\)</span>,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>m</p>
+<p>Следовательно, выполняется равенство <span class="math notranslate nohighlight">\(c_{i_0j_0}\)</span>=V.</p>
+<p>Элемент платежной матрицы <span class="math notranslate nohighlight">\(c_{i_0j_0}\)</span> называется седловой точкой.</p>
+<p>В Примере седловой точкой является элемент <span class="math notranslate nohighlight">\(c_{23}\)</span> платежной
+матрицы. Этот элемент равен 3 и, конечно же, совпадает с ценой игры.</p>
+</div>
+<div class="section" id="id6">
+<h2>6.3. Игры без седловой точки<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Пример:</strong> Найти нижнюю и верхнюю цены игры с платежной матрицей</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            2 &amp; 0 &amp; -1 \\
+            3 &amp; 4 &amp; 2 \\
+            -2 &amp; 1 &amp; 0 \\
+            5 &amp; 1 &amp; 5
+        \end{array}
+        \right)\end{split}\]</div>
+<p><strong>Решение:</strong> Действуя аналогично предыдущему Примеру, получаем</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(
+        \begin{array}{ccc}
+            2 &amp; 0 &amp; -1 \\
+            3 &amp; 4 &amp; 2 \\
+            -2 &amp; 1 &amp; 0 \\
+            5 &amp; 1 &amp; 5
+        \end{array}
+        \right)
+         \begin{array}{cc}
+            &amp;  -1 \\
+            &amp;2 \\
+            &amp;-2 \\
+            &amp;1
+        \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{array}{cccccccc}
+            5&amp; 4 &amp;  5 &amp; &amp; &amp;
+        \end{array}\]</div>
+<p>Нижняя цена игры</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>=max{-1,2,-2,1}=2.</p>
+<p>Верхняя цена игры</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span>=min{5,4,5}=4</p>
+<p>Замечание 1. В Примере нижняя цена игры отличается от верхней цены игры,
+следовательно, игра является игрой без седловой точки. Максиминной
+стратегией является стратегия <span class="math notranslate nohighlight">\(A_2\)</span>. Минимаксной стратегией
+является стратегия <span class="math notranslate nohighlight">\(B_2\)</span>.</p>
+<p>Замечание 2. Для любой игры без седловой точки выполнено неравенство
+<span class="math notranslate nohighlight">\(\alpha\)</span>&lt;<span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+</div>
+<div class="section" id="id7">
+<h2>6.4. Игры, повторяемые многократно. Смешанные стратегии<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если партнеры играют только один раз, то игрокам целесообразно
+придерживаться принципа минимакса, как в игре с седловой точкой, так и в
+игре без седловой точки.</p>
+<p>В случае многократного повторения игры с седловой точкой игрокам также
+целесообразно придерживаться принципа минимакса.</p>
+<p>Если же многократно повторяется игра без седловой точки, то постоянное
+использование минимаксных стратегий становится невыгодным.</p>
+<p>Действительно, в игре без седловой точки элемент платежной матрицы
+<span class="math notranslate nohighlight">\(c_{i_0j_0}\)</span>, соответствующий минимаксной стратегии игрока A, не
+обязан быть минимальным в своей строке. Следовательно, игрок B, зная о
+том, что игрок A в следующей игре будет использовать минимаксную
+стратегию <span class="math notranslate nohighlight">\(A_{i_0}\)</span>, может выбрать стратегию, отвечающую
+минимальному элементу строки <span class="math notranslate nohighlight">\(i_0\)</span>. В результате выигрыш игрока A
+уменьшится от величины <span class="math notranslate nohighlight">\(c_{i_0j_0}\)</span> до величины <span class="math notranslate nohighlight">\(\alpha\)</span>.
+Аналогично может поступить и игрок A, неожиданно применив против игрока
+B стратегию, соответствующую максимальному элементу столбца <span class="math notranslate nohighlight">\(j_0\)</span>.</p>
+<p>Более того, доказано, что при многократно повторяемой игре без седловой
+точки игроку A, для обеспечения среднего выигрыша, большего, чем
+<span class="math notranslate nohighlight">\(\alpha\)</span>, следует чередовать свои стратегии <span class="math notranslate nohighlight">\(A_1\)</span>,
+<span class="math notranslate nohighlight">\(A_2\)</span>, …, <span class="math notranslate nohighlight">\(A_m\)</span>. Игроку B для улучшения результата также
+целесообразно чередовать свои стратегии <span class="math notranslate nohighlight">\(B_1\)</span>, <span class="math notranslate nohighlight">\(B_2\)</span>, …,
+<span class="math notranslate nohighlight">\(B_n\)</span>.</p>
+<p>По этой причине для многократно повторяемых игр без седловой точки
+вводится следующее определение.</p>
+<p>В играх, которые повторяются многократно, каждая из стратегий
+<span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>, …, <span class="math notranslate nohighlight">\(A_m\)</span> называется чистой стратегией.</p>
+<p>Стратегия игрока A, обозначаемая</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+        \begin{array}{cccc}
+            A_{1} &amp; \ldots &amp; A_{m}\\
+            p_{1} &amp; \ldots &amp; p_{m}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>и состоящая в том, чтобы применять чистые стратегии <span class="math notranslate nohighlight">\(A_1\)</span>,
+<span class="math notranslate nohighlight">\(A_2\)</span>, …, <span class="math notranslate nohighlight">\(A_m\)</span> чередуя их по случайному закону с
+частотами <span class="math notranslate nohighlight">\(p_1\)</span>, …, <span class="math notranslate nohighlight">\(p_m\)</span> называется смешанной стратегией.
+Частоты <span class="math notranslate nohighlight">\(p_1\)</span>, …, <span class="math notranslate nohighlight">\(p_m\)</span> удовлетворяют соотношению</p>
+<p><span class="math notranslate nohighlight">\(p_1\)</span>+<span class="math notranslate nohighlight">\(p_2\)</span>+…+<span class="math notranslate nohighlight">\(p_m\)</span>=1.</p>
+<p>Чистые и смешанные стратегии игрока B определяются аналогично.</p>
+<p>Замечание. Каждая чистая стратегия является частным случаем смешанной
+стратегии, когда одна из стратегий применяется с частотой 1, а все
+остальные - с частотой 0.</p>
+<p>Смешанные стратегии, избранные игроками, называются оптимальными, если
+одностороннее отклонение любым игроком от своей оптимальной стратегии
+может изменить средний выигрыш только в сторону, невыгодную для этого
+игрока.</p>
+<p>Совокупность, состоящая из оптимальной стратегии одного игрока и
+оптимальной стратегии другого игрока, называется решением игры.</p>
+<p>Средний выигрыш V при применении обоими игроками оптимальных стратегий
+называется ценой игры.</p>
+<p>Стратегии, входящие с ненулевыми частотами в оптимальную стратегию
+игрока, называются полезными.</p>
+<p>В 1928 году фон Нейманом была доказана основная теорема теории игр,
+утверждающая, что каждая игра имеет, по крайней мере, одно решение,
+возможно, в области смешанных стратегий.</p>
+<p>Поскольку все чистые стратегии являются частными случаями смешанных
+стратегий, то из основной теоремы теории игр можно получить</p>
+<p>Следствие 1. Любая игра имеет цену.</p>
+<p>Следствие 2. Цена игры удовлетворяет неравенству
+<span class="math notranslate nohighlight">\(\alpha\)</span><span class="math notranslate nohighlight">\(\leq\)</span>V<span class="math notranslate nohighlight">\(\leq\)</span><span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>Следствие 3. Средний выигрыш остается равным цене игры, если один из
+игроков придерживается своей оптимальной стратегии, а другой игрок
+применяет свои полезные стратегии с любыми частотами.</p>
+</div>
+<div class="section" id="times2">
+<h2>6.5. Аналитический метод решения игры типа 2<span class="math notranslate nohighlight">\(\times\)</span>2<a class="headerlink" href="#times2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Рассмотрим игру без седловой точки типа 2<span class="math notranslate nohighlight">\(\times\)</span>2 с платежной
+матрицей</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cc}
+            c_{11} &amp; c_{12} \\
+            c_{21} &amp; c_{22}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>и найдем оптимальную стратегию</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+        \begin{array}{cc}
+            A_1 &amp; A_2 \\
+            p_1 &amp; p_2
+        \end{array}
+        \right)\end{split}\]</div>
+<p>игрока A. Согласно следствию 3 из основной теоремы теории игр эта
+стратегия обеспечивает игроку A выигрыш, равный цене игры V, даже если
+игрок B не выходит за пределы своих полезных стратегий. В данной игре
+обе чистые стратегии игрока B являются полезными, поскольку в противном
+случае игра имела бы решение в области чистых стратегий, т.е. была бы
+игрой с седловой точкой.</p>
+<p>Отсюда вытекает, что неизвестные <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span>, V
+удовлетворяют следующей системе из трех линейных уравнений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            c_{11}p_1+c_{21}p_2=V, \\
+            c_{12}p_1+c_{22}p_2=V, \\
+            p_1+p_2=1, \\
+        \end{matrix}\right.\end{split}\]</div>
+<p>решение которой имеет вид</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            p_1=\frac{c_{22}-c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+            p_2=\frac{c_{11}-c_{12}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+            V=\frac{c_{11}\cdot c_{22}-c_{12}\cdot c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+        \end{matrix}\right.\end{split}\]</div>
+<p>Аналогичным образом можно найти оптимальную стратегию</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_B=\left(
+        \begin{array}{cc}
+            B_1 &amp; B_2 \\
+            q_1 &amp; q_2
+        \end{array}
+        \right)\end{split}\]</div>
+<p>игрока B. В этом случае неизвестные <span class="math notranslate nohighlight">\(q_1\)</span>, <span class="math notranslate nohighlight">\(q_2\)</span>, V
+удовлетворяют системе уравнений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            c_{11}q_1+c_{12}q_2=V, \\
+            c_{21}q_1+c_{22}q_2=V, \\
+            q_1+q_2=1, \\
+        \end{matrix}\right.\end{split}\]</div>
+<p>решение которой имеет вид</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            q_1=\frac{c_{22}-c_{12}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+            q_2=\frac{c_{11}-c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+            V=\frac{c_{11}\cdot c_{22}-c_{12}\cdot c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+        \end{matrix}\right.\end{split}\]</div>
+<p>Применим теперь полученные формулы к карточной игре типа «веришь - не
+веришь». <strong>Пример:</strong> Имеются две карты: туз и двойка. Игрок А наугад
+берет одну из них. Если А взял туза, то он заявляет: «У меня туз» и
+требует у противника рубль. Если же А взял двойку, то он может либо
+сказать: «У меня туз» и потребовать рубль, либо признаться, что у него
+двойка и заплатить рубль. Игрок В, если ему предлагают рубль, берет его.
+Однако, если у него требуют рубль, то В может либо поверить, что у А
+туз, и заплатить рубль, либо не верить и потребовать проверки. Если в
+результате проверки окажется, что у А действительно туз, то В платит 2
+рубля. Если же выяснится, что у А была двойка, то А платит 2 рубля.</p>
+<p>Найти оптимальные стратегии для каждого из игроков.</p>
+<p><strong>Решение:</strong> У игрока A есть 2 стратегии: <span class="math notranslate nohighlight">\(A_1\)</span> - обманывать,
+<span class="math notranslate nohighlight">\(A_2\)</span> - не обманывать. У игрока В тоже есть 2 стратегии:
+<span class="math notranslate nohighlight">\(B_1\)</span> - верить, <span class="math notranslate nohighlight">\(B_2\)</span> - не верить. Это позволяет найти все
+элементы платежной матрицы игры, вычислив средний выигрыш для каждой
+комбинации стратегий.</p>
+<p>1.<span class="math notranslate nohighlight">\(\qquad\)</span> Комбинация <span class="math notranslate nohighlight">\(A_1B_1\)</span> (А обманывает, В верит).</p>
+<p>Если А берет туза (вероятностью этого 0,5), то он требует рубль. В верит
+ему и платит. Если А берет двойку (вероятность этого также 0,5), то он
+обманывает и тоже требует рубль. В верит ему и платит. Средний выигрыш А
+равен <span class="math notranslate nohighlight">\(c_{11}\)</span>=1<span class="math notranslate nohighlight">\(\cdot\)</span>0,5+1<span class="math notranslate nohighlight">\(\cdot\)</span>0,5=1.</p>
+<p>2.<span class="math notranslate nohighlight">\(\qquad\)</span> Комбинация <span class="math notranslate nohighlight">\(A_1B_2\)</span> (А обманывает, В не верит).</p>
+<p>Если А берет туза, то он требует рубль, а В не верит и после проверки
+платит 2 рубля. Если же А взял двойку, то он обманывает и тоже требует
+рубль. В не верит ему, и в результате А платит 2 рубля. Средний выигрыш
+А равен
+<span class="math notranslate nohighlight">\(c_{12}\)</span>=2<span class="math notranslate nohighlight">\(\cdot\)</span>0,5+(-2)<span class="math notranslate nohighlight">\(\cdot\)</span>0,5=0.</p>
+<p>3.<span class="math notranslate nohighlight">\(\qquad\)</span> Комбинация <span class="math notranslate nohighlight">\(A_2B_1\)</span> (А не обманывает, В верит).</p>
+<p>Если А берет туза, то он требует рубль, В платит 1 рубль. Если А берет
+двойку, то он сообщает об этом и платит рубль. Средний выигрыш А равен
+<span class="math notranslate nohighlight">\(c_{21}\)</span>=1<span class="math notranslate nohighlight">\(\cdot\)</span>0,5+(-1)<span class="math notranslate nohighlight">\(\cdot\)</span>0,5=0.</p>
+<p>4.<span class="math notranslate nohighlight">\(\qquad\)</span> Комбинация <span class="math notranslate nohighlight">\(A_2B_2\)</span> (А не обманывает, В не
+верит).</p>
+<p>Если А берет туза, то он требует рубль, В проверяет и платит 2 рубля.
+Если А берет двойку, то он сообщает об этом и платит рубль. Средний
+выигрыш А равен
+<span class="math notranslate nohighlight">\(c_{22}\)</span>=2<span class="math notranslate nohighlight">\(\cdot\)</span>0,5+(-1)<span class="math notranslate nohighlight">\(\cdot\)</span>0,5=0,5.</p>
+<p>Отсюда вытекает, что платежная матрица имеет вид</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cc}
+            c_{11} &amp; c_{12} \\
+            c_{21} &amp; c_{22}
+        \end{array}
+        \right)
+        =\left(
+        \begin{array}{cc}
+            1 &amp; 0 \\
+            0 &amp; 0,5
+        \end{array}
+        \right)\end{split}\]</div>
+<p>и можно найти нижнюю и верхнюю цены игры:</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span>=max min <span class="math notranslate nohighlight">\(c_{ij}\)</span>=0,
+1<span class="math notranslate nohighlight">\(\leq\)</span>i<span class="math notranslate nohighlight">\(\leq\)</span>2,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>2,</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span>=min max <span class="math notranslate nohighlight">\(c_{ij}\)</span>=0,5 ,
+1<span class="math notranslate nohighlight">\(\leq\)</span>i<span class="math notranslate nohighlight">\(\leq\)</span>2,
+1<span class="math notranslate nohighlight">\(\leq\)</span>j<span class="math notranslate nohighlight">\(\leq\)</span>2.</p>
+<p>Следовательно, игра не имеет седловой точки, и ее решение нужно искать в
+области смешанных стратегий. Для этого воспользуемся формулами,
+полученными выше:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            p_1=\frac{c_{22}-c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}=\frac{0,5}{1,5}=\frac{1}{3}, \\
+            p_2=\frac{c_{11}-c_{12}}{c_{11}+c_{22}-c_{12}-c_{21}}=\frac{1}{1,5}=\frac{2}{3}, \\
+            V=\frac{c_{11}\cdot c_{22}-c_{12}\cdot c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}=\frac{0,5}{1,5}=\frac{1}{3}. \\
+        \end{matrix}\right.\end{split}\]</div>
+<p>Следовательно, смешанная стратегия игрока A имеет вид</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+        \begin{array}{cc}
+            A_1 &amp; A_2 \\
+            \frac{1}{3} &amp; \frac{2}{3}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>Далее получаем</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            q_1=\frac{c_{22}-c_{12}}{c_{11}+c_{22}-c_{12}-c_{21}}=\frac{0,5}{1,5}=\frac{1}{3}, \\
+            q_2=\frac{c_{11}-c_{21}}{c_{11}+c_{22}-c_{12}-c_{21}}, \\
+        \end{matrix}\right.\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_B=\left(
+        \begin{array}{cc}
+            B_1 &amp; B_2 \\
+            \frac{1}{3} &amp; \frac{2}{3}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>Таким образом, оптимальным для А будет в одной трети случаев обманывать,
+а в двух третях случаев - не обманывать. Такая тактика обеспечит ему
+средний выигрыш, равный V=<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>. Если бы А стал
+пользоваться своей максиминной стратегией, то его выигрыш был бы равен
+<span class="math notranslate nohighlight">\(\alpha\)</span>=0.</p>
+<p>Для В оптимальная стратегия - это в одной трети случаев верить А и
+платить ему рубль, а в остальных случаях требовать проверки. В этой
+ситуации его средний проигрыш составит <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>, тогда как
+при применении минимаксной стратегии он будет проигрывать в среднем
+<span class="math notranslate nohighlight">\(\beta\)</span>=0,5.</p>
+<p>Значение V=<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> показывает, что рассмотренная игра
+выгодна для А и невыгодна для В, поскольку, пользуясь своей оптимальной
+стратегией, A всегда может обеспечить себе положительный средний
+выигрыш.</p>
+</div>
+<div class="section" id="timesn-m-times2">
+<h2>6.6. Графический метод решения игр типа 2<span class="math notranslate nohighlight">\(\times\)</span>n и m<span class="math notranslate nohighlight">\(\times\)</span>2<a class="headerlink" href="#timesn-m-times2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Рассмотрим игру типа 2<span class="math notranslate nohighlight">\(\times\)</span>n с платежной матрицей</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n}\\
+            a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>и проведем через точку (1; 0) координатной плоскости Oxy прямую l,
+перпендикулярную оси абсцисс. После этого для каждой из стратегий
+<span class="math notranslate nohighlight">\(B_i\)</span> (i=:math:<cite>{overline{1,n}}</cite>) проведем прямую</p>
+<p><span class="math notranslate nohighlight">\((b_i): y=a_{1i}+(a_{2i}-a_{1i})x\)</span>,</p>
+<p>соединяющую точку (0;:math:<cite>a_{1i}</cite>) на оси Оу с точкой
+(0;:math:<cite>a_{2i}</cite>) на прямой l. Ось Оу отвечает за стратегию
+<span class="math notranslate nohighlight">\(A_1\)</span>, а прямая l - за стратегию <span class="math notranslate nohighlight">\(A_2\)</span>.</p>
+<div class="figure align-center">
+<img alt="_images/26.png" src="_images/26.png" />
+</div>
+<p>Если игрок А применяет смешанную стратегию</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+        \begin{array}{cccc}
+            A_1 &amp; A_2\\
+            p_1 &amp; p_2
+        \end{array}
+        \right)\end{split}\]</div>
+<p>то его выигрыш в случае, если противник применяет чистую стратегию
+<span class="math notranslate nohighlight">\(B_i\)</span>, равен</p>
+<p><span class="math notranslate nohighlight">\(a_{1i}p_1+a_{2i}p_2=a_{1i}(1-p_2)+a_{2i}p_2\)</span>,</p>
+<p>и этому выигрышу соответствует точка М на прямой <span class="math notranslate nohighlight">\(b_i\)</span> с абсциссой
+x=<span class="math notranslate nohighlight">\(p_2\)</span>.</p>
+<p>Ломаная <span class="math notranslate nohighlight">\(b_1MNb_3\)</span>, отмеченная на чертеже жирной линией, позволяет
+определить минимальный выигрыш игрока А при любом поведении игрока В.
+Точка N, в которой эта ломаная достигает максимума, определяет решение и
+цену игры. Ордината точки N равна цене игры V, а ее абсцисса <span class="math notranslate nohighlight">\(p_2\)</span>
+- частоте применения стратегии <span class="math notranslate nohighlight">\(A_1\)</span> в оптимальной смешанной
+стратегии игрока А.</p>
+<p>Далее непосредственно по чертежу находим пару «полезных» стратегий
+игрока В, пересекающихся в точке N (если в точке N пересекается более
+двух стратегий, то выберем любые две из них). Пусть это будут стратегии
+<span class="math notranslate nohighlight">\(B_i\)</span> и <span class="math notranslate nohighlight">\(B_j\)</span>. Поскольку выигрыш игрока А, если он
+придерживается оптимальной стратегии, не зависит от того, в каких
+пропорциях игрок В применяет эти стратегии, то неизвестные <span class="math notranslate nohighlight">\(p_1\)</span>,
+<span class="math notranslate nohighlight">\(p_2\)</span>, V определяются из системы уравнений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{matrix}
+            a_{1i}p_1+a_{2i}p_2=V, \\
+            a_{1j}p_1+a_{2j}p_2=V, \\
+            p_1+p_2=1.
+        \end{matrix}\right.\end{split}\]</div>
+<p>Частоты <span class="math notranslate nohighlight">\(q_1\)</span>, <span class="math notranslate nohighlight">\(q_2\)</span> в оптимальной стратегии</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_B=\left(
+        \begin{array}{ccccccc}
+            0 &amp; \ldots &amp; B_i &amp; \ldots &amp; B_j &amp; \ldots &amp; 0\\
+            0 &amp; \ldots &amp; q_i &amp; \ldots &amp; q_j &amp; \ldots &amp; 0
+        \end{array}
+        \right)\end{split}\]</div>
+<p>игрока В определяются из соотношения</p>
+<p><span class="math notranslate nohighlight">\(a_{1i}q_i+a_{1j}(1-q_i)=V\)</span>; (<span class="math notranslate nohighlight">\(q_j=1-q_i\)</span>).</p>
+<p>Замечание. Иногда точка N не является пересечением двух стратегий, а
+попадает на одну из прямых х=0 или х=1. В этом случае решением игры
+будут соответствующие чистые стратегии.</p>
+<p>Для игры m<span class="math notranslate nohighlight">\(\times\)</span>2 решение находится совершенно аналогично.
+Действи- тельно, поскольку выигрыш игрока А одновременно является
+проигрышем игрока В, то для решения задачи нужно построить ломаную,
+соответствую- щую верхней границе выигрыша игрока А, а затем найти на
+ней точку с минимальной ординатой.</p>
+</div>
+<div class="section" id="id8">
+<h2>6.7. Практическое применение теории игр<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id9">
+<h3>6.7.1. Пример решения задачи теории игр<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Пример:</strong></p>
+<p>Пусть игра задана матрицей</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\left(
+        \begin{array}{cccc}
+            1 &amp; 5 &amp; 9 &amp; 3 \\
+            6 &amp; 3 &amp; 2 &amp; 7
+        \end{array}
+        \right)\end{split}\]</div>
+<p>Найти оптимальные стратегии игроков и определить цену игры.</p>
+<p><strong>Решение:</strong></p>
+<div class="figure align-center">
+<img alt="_images/27.png" src="_images/27.png" />
+</div>
+<p>Проведем прямые <span class="math notranslate nohighlight">\(b_i\)</span>, и построим ломаную линию <span class="math notranslate nohighlight">\(b_1NMb_3\)</span>,
+соответствующую нижней границе выигрыша. Точка N, в которой эта ломаная
+достигает максимума, является пересечением прямых</p>
+<p>(<span class="math notranslate nohighlight">\(b_1\)</span>): y=1+5x и (<span class="math notranslate nohighlight">\(b_2\)</span>): y=5-2x.</p>
+<p>Вычислив координаты точки N: <span class="math notranslate nohighlight">\(x_0\)</span>=<span class="math notranslate nohighlight">\(\frac{4}{7}\)</span>,
+<span class="math notranslate nohighlight">\(y_0\)</span>=<span class="math notranslate nohighlight">\(\frac{27}{7}\)</span>, получаем оптимальную стратегию
+игрока А</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+        \begin{array}{cc}
+            A_1 &amp; A_2 \\
+            \frac{3}{7} &amp; \frac{4}{7}
+        \end{array}
+        \right)\end{split}\]</div>
+<p>и цену V=<span class="math notranslate nohighlight">\(\frac{27}{7}\)</span>. Так как точка N является пересечением
+прямых <span class="math notranslate nohighlight">\(b_1\)</span> и <span class="math notranslate nohighlight">\(b_2\)</span>, то полезными стратегиями игрока В
+будут стратегии <span class="math notranslate nohighlight">\(B_1\)</span> и <span class="math notranslate nohighlight">\(B_2\)</span>. Найдем частоты их применения
+<span class="math notranslate nohighlight">\(q_1\)</span> и <span class="math notranslate nohighlight">\(q_2\)</span>, зная, что выигрыш равен цене игры, если игрок
+В применяет оптимальную стратегию, а игрок А - любую из своих полезных
+стратегий, например, стратегию <span class="math notranslate nohighlight">\(A_1\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(q_1\)</span>+5(1-<span class="math notranslate nohighlight">\(q_1\)</span>)=V=<span class="math notranslate nohighlight">\(\frac{27}{7}\)</span>
+<span class="math notranslate nohighlight">\(\Rightarrow\)</span>
+<span class="math notranslate nohighlight">\(q_1\)</span>=<span class="math notranslate nohighlight">\(\frac{2}{7}\)</span>,<span class="math notranslate nohighlight">\(q_2\)</span>=1-<span class="math notranslate nohighlight">\(q_1\)</span>=<span class="math notranslate nohighlight">\(\frac{5}{7}\)</span>.</p>
+<p><strong>Ответ:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_A=\left(
+            \begin{array}{cc}
+                A_1 &amp; A_2 \\
+                \frac{4}{7} &amp; \frac{3}{7}
+            \end{array}
+            \right);
+        S_B=\left(
+            \begin{array}{cccc}
+                B_1 &amp; B_2 &amp; B_3 &amp; B_4 \\
+                \frac{2}{7} &amp; \frac{5}{7} &amp; 0 &amp; 0
+            \end{array}
+            \right);
+        V=\frac{27}{7}.\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>6.8. Перейти к практике<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="main.html" class="btn btn-neutral float-right" title="7. Методическое пособие" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="maxflow.html" class="btn btn-neutral" title="5. Задача о максимальном потоке" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

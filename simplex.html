@@ -1,0 +1,786 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Симплекс метод &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="3. Транспортная задача" href="transport.html"/>
+        <link rel="prev" title="1. Графический метод решения задач линейного программирования" href="graph.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graph.html">1. Графический метод решения задач линейного программирования</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Симплекс метод</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. Введение дополнительных переменных в систему ограничений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. Преобразование системы уравнений методом полных жордановых исключений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. Понятие опорного плана</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.4. Расчетный алгоритм симплекс-метода</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.4.1. Первый этап алгоритма. Формирование симплекс-таблицы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.4.2. Второй этап алгоритма. Анализ решения по целевой (фиктивной целевой) строке симплекс-таблицы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.4.3. Третий этап алгоритма. Улучшение решения по целевой (фиктивной целевой) строке симплекс-таблицы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.4.4. Четвертый этап алгоритма. Запись оптимального плана</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">2.5. Практическое применение симплекс-метода</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.5.1. Пример решения типовой задачи с помощью симплекс-метода</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">2.6. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">3. Транспортная задача</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimal.html">4. Задача о распределении средств</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maxflow.html">5. Задача о максимальном потоке</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gametheory.html">6. Теория игр</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Симплекс метод</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/simplex.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="transport.html" class="btn btn-neutral float-right" title="3. Транспортная задача" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="graph.html" class="btn btn-neutral" title="1. Графический метод решения задач линейного программирования" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. Симплекс метод<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>2.1. Введение дополнительных переменных в систему ограничений<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В предыдущем параграфе для решения ОЗЛП был применен графический метод.
+В общем случае ОЗЛП решается с помощью симплекс-метода, к изложению
+которого мы сейчас и переходим.</p>
+<p>Рассмотрим ОЗЛП с системой ограничений в следующей форме:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           {a_{11}x_1+a_{12}x_2+...+a_{1n}x_n}\leq b_1,\\
+           {a_{21}x_1+a_{22}x_2+...+a_{2n}x_n}\leq b_2,\\
+           ............................................\\
+           {a_{m1}x_1+a_{m2}x_2+...+a_{mn}x_n}\leq b_m,
+\end{cases}\end{split}\]</div>
+<p>Если ввести в систему ограничений дополнительные переменные</p>
+<p><span class="math notranslate nohighlight">\(x_{n+1}\)</span>, <span class="math notranslate nohighlight">\(x_{n+2}\)</span>, …, <span class="math notranslate nohighlight">\(x_{n+m}\)</span></p>
+<p>по формулам</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           x_{n+1}=b_1-{a_{11}x_1+a_{12}x_2+...+a_{1n}x_n},\\
+           x_{n+2}=b_2-{a_{21}x_1+a_{22}x_2+...+a_{2n}x_n},\\
+           ..................................................\\
+           x_{n+m}=b_m-{a_{m1}x_1+a_{m2}x_2+...+a_{mn}x_n},\\
+        \end{cases}\end{split}\]</div>
+<p>то система ограничений преобразуется в систему уравнений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           {a_{11}x_1+a_{12}x_2+...+a_{1n}x_n}=b_1,\\
+           {a_{21}x_1+a_{22}x_2+...+a_{2n}x_n}=b_2,\\
+           ........................................\\
+           {a_{m1}x_1+a_{m2}x_2+...+a_{mn}x_n}=b_m,\\
+        \end{cases}\end{split}\]</div>
+<p>имеющую специальный вид. В этой системе каждая из переменных
+<span class="math notranslate nohighlight">\(x_{n+1}\)</span>, <span class="math notranslate nohighlight">\(x_{n+2}\)</span>, …, <span class="math notranslate nohighlight">\(x_{n+m}\)</span></p>
+<p>исключена из всех
+уравнений, за исключением одного уравнения, в котором коэффициент при
+ней равен 1.</p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. Преобразование системы уравнений методом полных жордановых исключений<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Заметив, что мы ввели дополнительные переменные в систему ограничений
+таким образом, что при любом допустимом плане они оказались
+неотрицательными числами, перейдем к преобразованию системы уравнений с
+помощью метода, который носит название метода полных жордановых
+исключений.</p>
+<p>Для системы уравнений назовем переменные
+<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, …, <span class="math notranslate nohighlight">\(x_n\)</span> свободными,
+а переменные <span class="math notranslate nohighlight">\(x_{n+1}\)</span>, <span class="math notranslate nohighlight">\(x_{n+2}\)</span>,…, <span class="math notranslate nohighlight">\(x_{n+m}\)</span> - базисными.</p>
+<p>Разделение переменных на свободные и базисные является условным,
+поскольку систему уравнений можно переписать в другом (эквивалентном)
+виде, где наборы свободных и базисных переменных будут иными. В
+частности, можно поменять ролями какую - нибудь свободную переменную
+<span class="math notranslate nohighlight">\(x_r\)</span> с некоторой базисной переменной. С этой целью совершим
+следующие операции:</p>
+<ol class="arabic simple">
+<li><p>Рассмотрим какое-нибудь уравнение системы, в котором коэффициент
+<span class="math notranslate nohighlight">\(a_{sr}\)</span> при переменной <span class="math notranslate nohighlight">\(x_{r}\)</span> отличен от 0 (это
+уравнение с номером s).</p></li>
+<li><p>Разделим это уравнение на <span class="math notranslate nohighlight">\(a_{sr}\)</span>. Тогда в нем коэффициент при
+пере- менной <span class="math notranslate nohighlight">\(x_{r}\)</span> станет равным 1.</p></li>
+<li><p>Вычтем из каждого i-го уравнения системы (i <span class="math notranslate nohighlight">\(\ne\)</span>s)
+уравнение с номером s, умноженное на <span class="math notranslate nohighlight">\(a_{sr}\)</span>.
+В результате переменная <span class="math notranslate nohighlight">\(x_{r}\)</span> будет исключена из всех
+уравнений системы, кроме уравнения с номером s, и станет базисной,
+а переменная <span class="math notranslate nohighlight">\(x_{n+s}\)</span> станет свободной.</p></li>
+</ol>
+<p>Описанный процесс носит название полного жорданова исключения с
+разрешающим элементом <span class="math notranslate nohighlight">\(a_{sr}\)</span>. Коэффициенты s-го уравнения
+системы называются разрешающей строкой, а элементы r-го столбца матрицы
+системы уравнений - разрешающим столбцом.</p>
+<p>Удобный алгоритм пересчета коэффициентов системы уравнений при
+проведении полного жорданова исключения с разрешающим элементом
+<span class="math notranslate nohighlight">\(a_{sr}\)</span> состоит в следующем (здесь и далее верхний индекс «н»
+соответствует новому значению элемента матрицы, а верхний индекс «с» -
+старому значению):</p>
+<ol class="arabic simple">
+<li><p>Разделим элементы разрешающей строки на разрешающий элемент. При этом
+разрешающий элемент станет равным 1;</p></li>
+<li><p>Все элементы разрешающего столбца, за исключением разрешающего
+элемента, заменим нулями. При этом разрешающий элемент останется
+равным 1.</p></li>
+<li><p>Все остальные элементы матрицы пересчитаем в новые элементы</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(a_{ij}^H\)</span>=<span class="math notranslate nohighlight">\(\frac{a_{ij}^C \cdot a_{sr}^C-a_{sj}^C\cdot a_{ir}^C}{a_{sr}^C}\)</span></p>
+<p>воспользовавшись «правилом прямоугольника»</p>
+<div class="figure align-center" id="id14">
+<img alt="_images/47.png" src="_images/47.png" />
+<p class="caption"><span class="caption-text">Рисунок 1</span><a class="headerlink" href="#id14" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p>В случае, когда в разрешающей строке (разрешающем столбце) есть нули,
+правило прямоугольника приводит к тому, что элементы столбцов (строк),
+пересекающих эти нули, остаются без изменения.</p>
+</div>
+<div class="section" id="id4">
+<h2>2.3. Понятие опорного плана<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p>Базисным решением ОЗЛП называется такое решение системы уравнений, в
+котором все свободные переменные равны 0.</p></li>
+<li><p>Базисное решение ОЗЛП называется опорным решением (опорным планом),
+если в нем все базисные переменные неотрицательны.</p></li>
+<li><p>В теории симплекс-метода доказывается, что, если максимум целевой
+функции при данной в ОЗЛП системе ограничений существует, то он
+достигается на опорном решении.</p></li>
+<li><p>Опорное решение, на котором целевая функция достигает максимума,
+является оптимальным планом.</p></li>
+</ul>
+<p>Замечание. Не следует думать, что ОЗЛП всегда имеет решение. Система
+ограничений, например, может быть противоречивой и задавать пустое
+множество решений. Система ограничений может также задавать
+неограниченное множество, на котором функция прибыли является
+неограниченной.</p>
+</div>
+<div class="section" id="id5">
+<h2>2.4. Расчетный алгоритм симплекс-метода<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Алгоритм симплекс-метода состоит из нескольких этапов: сначала
+происходит построение одного из опорных решений, а затем - «улучшение»
+этого решения, т.е. переход к другим опорным решениям, на которых
+значениецелевой функции не уменьшается. Для проведения расчетов
+используются симплекс-таблицы, составленные по коэффициентам системы, а
+процесс поиска и улучшения опорного решения заключается в пересчете
+элементов этих таблиц методом полных жордановых исключений.</p>
+<div class="section" id="id6">
+<h3>2.4.1. Первый этап алгоритма. Формирование симплекс-таблицы<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Составим первую симплекс-таблицу по системе и целевой функции.</p>
+<div class="figure align-center">
+<img alt="_images/Screenshot_2.png" src="_images/Screenshot_2.png" />
+</div>
+<p>Для каждого уравнения системы в первом столбце таблицы указывается
+соответствующая базисная переменная. Строка z называется целевой
+строкой. Строка <span class="math notranslate nohighlight">\(\varphi\)</span> добавляется в таблицу лишь в случае
+поиска опорного решения и называется фиктивной целевой строкой.
+Последний столбец таблицы (столбец <span class="math notranslate nohighlight">\(\Xi\)</span>) организован для контроля
+правильности вычислений, и в каждой его клетке будем записывать суммы
+чисел, стоящих в строке.</p>
+<p>Таблице соответствует базисное решение системы вида</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span>=<span class="math notranslate nohighlight">\(x_2\)</span>=…=<span class="math notranslate nohighlight">\(x_n\)</span>=0,</p>
+<p><span class="math notranslate nohighlight">\(x_{n+1}\)</span>=<span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(x_{n+2}\)</span>=<span class="math notranslate nohighlight">\(b_2\)</span>, …,</p>
+<p><span class="math notranslate nohighlight">\(x_{n+m}\)</span>=<span class="math notranslate nohighlight">\(b_m\)</span>.</p>
+<p>Возможны два случая:</p>
+<ol class="arabic simple">
+<li><p>Все числа <span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(b_2\)</span>, …, <span class="math notranslate nohighlight">\(b_m\)</span> неотрицательны,
+т.е. решение является опорным. В этом случае строку <span class="math notranslate nohighlight">\(\varphi\)</span> в
+таблице не заводим и сразу переходим ко 2-му этапу.</p></li>
+<li><p>Среди чисел <span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(b_2\)</span>, …, <span class="math notranslate nohighlight">\(b_m\)</span> существуют
+отрицательные, т.е. решение не является опорным. Тогда для построения
+опорного решения запишем в строку <span class="math notranslate nohighlight">\(\varphi\)</span> сумму тех строк
+таблицы, где стоят отрицательные значения <span class="math notranslate nohighlight">\(b_i\)</span>, а затем
+перейдем к анализу и улучшению решения по фиктивной целевой строке
+<span class="math notranslate nohighlight">\(\varphi\)</span>.</p></li>
+</ol>
+</div>
+<div class="section" id="id7">
+<h3>2.4.2. Второй этап алгоритма. Анализ решения по целевой (фиктивной целевой) строке симплекс-таблицы<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Рассмотрим элементы целевой (фиктивной целевой) строки, стоящие в
+столбцах <span class="math notranslate nohighlight">\(x_1\)</span>, …, <span class="math notranslate nohighlight">\(x_{n+m}\)</span>. Если среди них имеется хотя
+бы один отрицательный элемент, то решение надо улучшать по правилам
+этапа 3.</p>
+<p>Если же все указанные элементы неотрицательны, то в случае, когда
+анализируется опорное решение по целевой строке z, это означает, что на
+этом решении функция z достигает максимума и нужно переходить к
+выписыванию соответствующего оптимального плана (этап 4).</p>
+<p>В случае поиска опорного решения (анализ по фиктивной целевой строке
+<span class="math notranslate nohighlight">\(\varphi\)</span>) вся строка <span class="math notranslate nohighlight">\(\varphi\)</span> должна состоять из нулей,
+иначе система ограничений противоречива, и ОЗЛП не имеет решения.
+Получение же нулевой строки <span class="math notranslate nohighlight">\(\varphi\)</span> свидетельствует о том, что
+опорное решение построено. В этом случае фиктивная целевая строка
+удаляется из таблицы, а решение анализируется по целевой строке z.</p>
+</div>
+<div class="section" id="id8">
+<h3>2.4.3. Третий этап алгоритма. Улучшение решения по целевой (фиктивной целевой) строке симплекс-таблицы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Найдем среди элементов <span class="math notranslate nohighlight">\(z_1\)</span>, <span class="math notranslate nohighlight">\(z_2\)</span>, …, <span class="math notranslate nohighlight">\(z_n\)</span>
+целевой строки z (или среди элементов <span class="math notranslate nohighlight">\(\phi_1\)</span>, <span class="math notranslate nohighlight">\(\phi_2\)</span>,
+…, <span class="math notranslate nohighlight">\(\phi_n\)</span> в случае фиктивной целевой строки <span class="math notranslate nohighlight">\(\phi\)</span>)
+наибольший по абсолютной величине отрицательный элемент. Пусть это
+будет элемент <span class="math notranslate nohighlight">\(z_r\)</span> (или <span class="math notranslate nohighlight">\(\phi_r\)</span>), тогда столбец
+<span class="math notranslate nohighlight">\(x_r\)</span> объявим разрешающим.</p></li>
+<li><p>Найдем среди дробей вида <span class="math notranslate nohighlight">\(\frac{b_i}{a_{ir}}\)</span> (i=1,2,…, m)
+наименьшую неотрицательную дробь (пусть это будет дробь
+<span class="math notranslate nohighlight">\(\frac{b_s}{a_{sr}}\)</span>), и объявим строку <span class="math notranslate nohighlight">\(x_{n+s}\)</span>
+разрешающей. Если же все дроби вида <span class="math notranslate nohighlight">\(\frac{b_i}{a_{ir}}\)</span>
+окажутся отрицательными, то это означает, что при заданной системе
+ограничений функция z неограничена,т.е. поставленная ОЗЛП решений не
+имеет.</p></li>
+<li><p>Элемент <span class="math notranslate nohighlight">\(a_{sr}\)</span>, стоящий на пересечении разрешающей строки и
+разрешающего столбца, объявим разрешающим, и, для наглядности, его
+можно обвести в таблице прямоугольником.</p>
+<p>Замечание. Иногда существует несколько возможностей выбора
+разрешающего элемента. В этом случае для поиска опорного решения
+разрешающий элемент выбирают отрицательным.</p>
+</li>
+<li><p>Заготовим новую симплекс-таблицу, заменив в первом столбце переменную
+<span class="math notranslate nohighlight">\(x_{n+s}\)</span> на переменную <span class="math notranslate nohighlight">\(x_r\)</span>.</p></li>
+<li><p>Пересчитаем все элементы старой симплекс-таблицы, включая строки z и
+<span class="math notranslate nohighlight">\(\phi\)</span>, а также столбец <span class="math notranslate nohighlight">\(\sum\)</span>, по правилам метода полных
+жордановых исключений с разрешающим элементом <span class="math notranslate nohighlight">\(a_{sr}\)</span>.
+Результат запишем в новую симплекс-таблицу.</p>
+<p>Контроль правильности вычислений осуществляем при помощи сравнений
+сумм элементов каждой строки с числами, записанными в последнем
+столбце <span class="math notranslate nohighlight">\(\sum\)</span>. Расхождение результатов свидетельствует об
+арифметической ошибке, и соответствующую строку надо пересчитать.</p>
+<p>После этого возвращаемся к этапу 2.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="id9">
+<h3>2.4.4. Четвертый этап алгоритма. Запись оптимального плана<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p>В плане указываем значения только исходных переменных <span class="math notranslate nohighlight">\(x_1\)</span>,
+<span class="math notranslate nohighlight">\(x_2\)</span>, …, <span class="math notranslate nohighlight">\(x_n\)</span>, причем значения тех из них, которые
+являются свободными, полагаем равными нулю, а значения остальных
+переменных берем из второго столбца таблицы (столбца свободных членов).
+Из этого же столбца выписываем максимальное значение z.</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>2.5. Практическое применение симплекс-метода<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id11">
+<h3>2.5.1. Пример решения типовой задачи с помощью симплекс-метода<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Задача:</strong> Составляется комбинированный корм из трех злаков: кукурузы,
+овса и ржи. Калорийность и содержание витамина С в одном кг каждого
+злака, а также цена одного кг каждого злака указаны в следующей таблице
+1:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 1</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"><p>Рожь</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ккал</p></td>
+<td><p>200</p></td>
+<td><p>175</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Витамин С (г)</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Цена (руб.)</p></td>
+<td><p>6</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Требуется составить наиболее дешевый комбинированный корм, 1кг которого
+содержал бы не менее 125 ккал и не менее 2 г витамина С. <strong>Решение:</strong>
+Обозначим содержание кукурузы, овса и ржи в 1кг комбикорма символами
+<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> и <span class="math notranslate nohighlight">\(x_3\)</span> (кг), соответственно. По условию
+задачи эти переменные удовлетворяют следующей системе ограничений:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            x_1+x_2+x_3=1,\\
+            200x_1+175x_2+100x_3 \geq125,\\
+            5x_1+x_2+3x_3 \geq2,\\
+            x_1 \geq 0, x_2 \geq 0 и x_3 \geq 0\\
+        \end{cases}\end{split}\]</div>
+<p>Требуется найти план, доставляющий минимум функции затрат</p>
+<p>R=6<span class="math notranslate nohighlight">\(x_1\)</span> +4<span class="math notranslate nohighlight">\(x_2\)</span> +<span class="math notranslate nohighlight">\(x_3 \to\)</span> min.</p>
+<p>Решим поставленную задачу с помощью симплекс-метода. Для этого перепишем
+систему ограничений в следующем виде:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            x_1+x_2+x_3=1,\\
+            -8x_1-7x_2-4x_3 \leq-5,\\
+            -5x_1-x_2-3x_3 \leq-2\\
+ \end{cases}\end{split}\]</div>
+<p>Введя дополнительные переменные <span class="math notranslate nohighlight">\(x_4\)</span> и <span class="math notranslate nohighlight">\(x_5\)</span>, преобразуем
+систему в систему уравнений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            x_1+x_2+x_3=1,\\
+            -8x_1-7x_2-4x_3 =-5,\\
+            -5x_1-x_2-3x_3 =-2\\
+\end{cases}\end{split}\]</div>
+<p>Приведем систему к специальному виду, исключив переменную <span class="math notranslate nohighlight">\(x_3\)</span>
+из второго и третьего уравнений:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            x_1+x_2+x_3=1,\\
+            -4x_1-3x_2+x_4=-1,\\
+            -2x_1+2x_2+x_5=1\\
+\end{cases}\end{split}\]</div>
+<p>Будем искать решение, доставляющее максимум функции прибыли</p>
+<p>z=-6<span class="math notranslate nohighlight">\(x_1\)</span> -4 <span class="math notranslate nohighlight">\(x_2\)</span> - <span class="math notranslate nohighlight">\(x_3\)</span> =-1-5<span class="math notranslate nohighlight">\(x_1\)</span> -3 <span class="math notranslate nohighlight">\(x_2 \to\)</span> max.</p>
+<p>Составим первую симплекс-таблицу (Таблица 2).</p>
+<div class="line-block">
+<div class="line"><em>Таблица 2</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_5\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\sum\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_3\)</span></p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_4\)</span></p></td>
+<td><p>-1</p></td>
+<td><p>-4</p></td>
+<td><p>-3</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>-7</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_5\)</span></p></td>
+<td><p>1</p></td>
+<td><p>-2</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>-1</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\phi\)</span></p></td>
+<td><p>-1</p></td>
+<td><p>-4</p></td>
+<td><p>-3</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>-7</p></td>
+</tr>
+</tbody>
+</table>
+<p>Поскольку базисное решение</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span>=<span class="math notranslate nohighlight">\(x_2\)</span>=0, <span class="math notranslate nohighlight">\(x_3\)</span>=1, <span class="math notranslate nohighlight">\(x_4\)</span>=-1,
+<span class="math notranslate nohighlight">\(x_5\)</span>=1</p>
+<p>не является опорным (<span class="math notranslate nohighlight">\(x_4\)</span>&lt;0), то для поиска опорного решения в
+симплекстаблицу добавляется фиктивная целевая строка <span class="math notranslate nohighlight">\(\phi\)</span>, в
+которую записывается строка <span class="math notranslate nohighlight">\(x_4\)</span>.</p>
+<p>В столбец <span class="math notranslate nohighlight">\(\sum\)</span> запишем суммы чисел, стоящие по строкам таблицы.</p>
+<p>В строке <span class="math notranslate nohighlight">\(\phi\)</span> среди чисел -4, -3, 0, 1, 0 наибольшим по
+абсолютной величине отрицательным числом является число -4, поэтому
+разрешающим столбцом объявляем столбец <span class="math notranslate nohighlight">\(x_1\)</span>. Для элементов
+таблицы, расположенных в строках <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span> и <span class="math notranslate nohighlight">\(x_5\)</span>,
+рассмотрим дроби</p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{1}\)</span>=1, <span class="math notranslate nohighlight">\(\frac{-1}{-4}\)</span>=0,25 и
+<span class="math notranslate nohighlight">\(\frac{1}{-2}\)</span>=-0,5</p>
+<p>числители которых являются элементами второго столбца таблицы, а
+знаменатели - элементами разрешающего столбца. Наименьшей
+неотрицательной дробью является дробь 0,25, поэтому строка <span class="math notranslate nohighlight">\(x_4\)</span>
+объявляется разрешающей строкой. Таким образом, элемент таблицы, стоящий
+на пересечении строки <span class="math notranslate nohighlight">\(x_4\)</span> и столбца <span class="math notranslate nohighlight">\(x_1\)</span> (число -4)
+является разрешающим элементом.</p>
+<p>Теперь пересчитаем все элементы Таблицы 2 по правилам метода полных
+жордановых исключений с разрешающим элементом -4. Получим следующую
+Таблицу 3:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 3</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 6%" />
+<col style="width: 4%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_5\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\sum\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_3\)</span></p></td>
+<td><p>0,75</p></td>
+<td><p>0</p></td>
+<td><p>0,25</p></td>
+<td><p>1</p></td>
+<td><p>0,25</p></td>
+<td><p>0</p></td>
+<td><p>2,25</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_4\)</span></p></td>
+<td><p>0,25</p></td>
+<td><p>1</p></td>
+<td><p>0,75</p></td>
+<td><p>0</p></td>
+<td><p>-0,25</p></td>
+<td><p>0</p></td>
+<td><p>1,75</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_5\)</span></p></td>
+<td><p>1,5</p></td>
+<td><p>0</p></td>
+<td><p>3,5</p></td>
+<td><p>0</p></td>
+<td><p>-0,5</p></td>
+<td><p>1</p></td>
+<td><p>5,5</p></td>
+</tr>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>-2,25</p></td>
+<td><p>0</p></td>
+<td><p>-0,75</p></td>
+<td><p>0</p></td>
+<td><p>1,25</p></td>
+<td><p>0</p></td>
+<td><p>-1,75</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\phi\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Так как строка <span class="math notranslate nohighlight">\(\phi\)</span> стала нулевой, то опорное решение получено.
+Исключим строку <span class="math notranslate nohighlight">\(\phi\)</span> из таблицы и проведем анализ по целевой
+строке z.</p>
+<p>Среди чисел 0; -0,75; 0; 1,25; 0 наибольшим по абсолютной величине
+отрицательным числом является число -0,75, поэтому разрешающим столбцом
+объявляем столбец <span class="math notranslate nohighlight">\(x_2\)</span>. Для элементов таблицы, расположенных в
+строках <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>, и <span class="math notranslate nohighlight">\(x_5\)</span>, рассмотрим дроби</p>
+<p><span class="math notranslate nohighlight">\(\frac{0,75}{0,25}\)</span>=3,
+<span class="math notranslate nohighlight">\(\frac{0,25}{0,75}\)</span>=<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> и
+<span class="math notranslate nohighlight">\(\frac{1,5}{3,5}\)</span>=<span class="math notranslate nohighlight">\(\frac{3}{7}\)</span></p>
+<p>числители которых являются элементами второго столбца таблицы, а
+знаменатели - элементами разрешающего столбца. Наименьшей
+неотрицательной дробью является дробь <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>, поэтому
+строка <span class="math notranslate nohighlight">\(x_1\)</span> объявляется разрешающей строкой.</p>
+<p>Таким образом, элемент таблицы, стоящий на пересечении строки
+<span class="math notranslate nohighlight">\(x_1\)</span> и столбца <span class="math notranslate nohighlight">\(x_2\)</span> (число 0,75) является разрешающим
+элементом.</p>
+<p>Теперь пересчитаем все элементы Таблицы 3 в новую симплекс-таблицу по
+правилам метода полных жордановых исключений с разрешающим элементом
+0,75. Получим следующую Таблицу 4:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 4</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/Screenshot_3.png" src="_images/Screenshot_3.png" />
+</div>
+<p>В строке z среди чисел 1; 0; 0; 1; 0 нет отрицательных. Значит, максимум
+z достигнут, и можно выписать оптимальный план:</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span>=0, <span class="math notranslate nohighlight">\(x_2\)</span>=<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>,
+<span class="math notranslate nohighlight">\(x_3\)</span>=<span class="math notranslate nohighlight">\(\frac{2}{3}\)</span></p>
+<p>Максимальное значение целевой функции z равно -2, а минимальное значение
+функции затрат R равно 2.</p>
+<p><strong>Ответ:</strong> Оптимальным является комбикорм, состоящий на
+<span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> из овса и на <span class="math notranslate nohighlight">\(\frac{2}{3}\)</span> изо ржи.</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>2.6. Перейти к практике<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="transport.html" class="btn btn-neutral float-right" title="3. Транспортная задача" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="graph.html" class="btn btn-neutral" title="1. Графический метод решения задач линейного программирования" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

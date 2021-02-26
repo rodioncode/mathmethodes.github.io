@@ -1,0 +1,20 @@
+.. math methodes documentation master file, created by
+   sphinx-quickstart on Thu Jun 11 15:06:24 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Ссылки на ресурс для решения практических задач
+==========================================================================
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :numbered:
+   :caption: Содержание:
+
+1. `Решение задач графическим методом <http://en.wikipedia.org/wiki/Hyperlink>`_
+2. `Симплекс метод <http://en.wikipedia.org/wiki/Hyperlink>`_
+3. `Транспортная задача <http://en.wikipedia.org/wiki/Hyperlink>`_
+4. `Оптимальное распределение инвестиций <http://localhost:8888/notebooks/4_Transportation_Problem.ipynb>`_
+5. `Поиск максимального потока в сети <http://en.wikipedia.org/wiki/Hyperlink>`_
+6. `Теория игр <http://en.wikipedia.org/wiki/Hyperlink>`_

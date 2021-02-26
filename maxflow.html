@@ -1,0 +1,501 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Задача о максимальном потоке &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="6. Теория игр" href="gametheory.html"/>
+        <link rel="prev" title="4. Задача о распределении средств" href="optimal.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graph.html">1. Графический метод решения задач линейного программирования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplex.html">2. Симплекс метод</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">3. Транспортная задача</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimal.html">4. Задача о распределении средств</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Задача о максимальном потоке</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. Постановка задачи о максимальном потоке</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. Основные понятия</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.3. Разрез</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.4. Алгоритм Форда-Фалкерсона нахождения максимального потока</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.5. Практическое применение максимального потока</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.5.1. Пример решения типовой задачи с помощью максимального потока</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5.6. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gametheory.html">6. Теория игр</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. Задача о максимальном потоке</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/maxflow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="gametheory.html" class="btn btn-neutral float-right" title="6. Теория игр" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="optimal.html" class="btn btn-neutral" title="4. Задача о распределении средств" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="maxflow">
+<span id="id1"></span><h1>5. Задача о максимальном потоке<a class="headerlink" href="#maxflow" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>5.1. Постановка задачи о максимальном потоке<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Задача о максимальном потоке заключается в нахождении такого потока по
+транспортной сети, что сумма потоков из истока, или, что то же самое,
+сумма потоков в сток максимальна.</p>
+<p>Рассмотрим сеть, имеющую только один источник s и только один сток t.
+Рассмотрим задачу о потоке из узла s в узел t, причем s и t могут быть
+связаны произвольно сложной промежуточной сетью. Задача о максимальном
+потоке состоит в определении количества, которое можно перевезти из s в
+t.</p>
+<div class="line-block">
+<div class="line">Эту задачу можно проиллюстировать, как водопроводную или нефтяную
+сеть. Рассмотрим сеть трубопроводов для транспортировки сырой нефти от
+буровых скважин до нефтеперегонных заводов. Для перекачки нефти
+предусмотрены магистральные насосные станции. Каждый сегмент
+трубопровода имеет свою пропускную способность. Сегменты трубопровода
+могут быть как однонаправленные (осуществляют перекачку нефти только в
+одном направлении), так и в двунаправленные. В однонаправленных
+сегментах положительная пропускная способность предполагается в одном
+направлении и нулевая - в другом. На Рисунке 1 показана типовая сеть
+нефтепроводов. Как определить оптимальную пропускную способность (т.е.
+максимальный поток) между нефтяными скважинами и нефтеперегонными
+заводами?</div>
+</div>
+<div class="figure align-center" id="id10">
+<img alt="_images/37.png" src="_images/37.png" />
+<p class="caption"><span class="caption-text">Рисунок 1</span><a class="headerlink" href="#id10" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>5.2. Основные понятия<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сетью (flow network) называется ориентированный граф, каждому ребру
+(i,j) которого сопоставлено неотрицательное число C(i,j), называемое
+пропускной способностью, с двумя выделенными вершинами, называемыми
+исток s (source) и сток t (sink).</p>
+<p>Необходимо знать следующие правила для решения задачи.</p>
+<p>1. Будем считать, что если поток из вершины i к j равен
+<span class="math notranslate nohighlight">\(\varphi_{ij}\)</span>, то противоположный поток равен
+-<span class="math notranslate nohighlight">\(\varphi_{ij}\)</span>.</p>
+<p>2. Если поток по дуге <span class="math notranslate nohighlight">\(\varphi_{ij}\)</span> меньше его пропускной
+способности, то есть <span class="math notranslate nohighlight">\(\varphi_{ij}&lt;C_{ij}\)</span>, то дуга называется
+ненасыщенной потоком, если же <span class="math notranslate nohighlight">\(\varphi_{ij}=C_{ij}\)</span>, то дуга
+называется насыщенной потоком.</p>
+<p>3. Из физического смысла грузопотока следует, что поток по каждой дуге
+не может превышать ее пропускную способность, т.е.
+<span class="math notranslate nohighlight">\(\varphi_{ij} \leq C_{ij}\)</span>.</p>
+<p>4. Для любой вершины, кроме источника и стока, количество вещества,
+поступающего в эту вершину, равно количеству вещества, вытекающего из
+него. Это условие называется условием сохранения потока, в промежуточных
+вершинах потоки не создаются и не исчезают – отсюда следует, что общее
+количество вещества, вытекающего из источника, совпадает с общим
+количеством вещества, поступающего в сток.</p>
+<div class="line-block">
+<div class="line">Для ребра (i,j), где i&lt;j, используем запись (<span class="math notranslate nohighlight">\(C_{ij},C_{ji}\)</span>)
+для представления пропускных способностей в направлениях
+i<span class="math notranslate nohighlight">\(\to\)</span>j и j<span class="math notranslate nohighlight">\(\to\)</span>i соответственно. Во избежании
+недоразумений на схеме сети <span class="math notranslate nohighlight">\(C_{ij}\)</span> будем располагать на ребре
+(i,j) ближе к узлу i, а <span class="math notranslate nohighlight">\(C_{ji}\)</span> ближе к узлу j, как показано на
+Рисунок 2.</div>
+</div>
+<div class="figure align-center" id="id11">
+<img alt="_images/35.png" src="_images/35.png" />
+<p class="caption"><span class="caption-text">Рисунок 2</span><a class="headerlink" href="#id11" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>5.3. Разрез<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Разрез определяет множество ребер, при удалении которых из сети
+полностью прекращается поток от источника к столу. Пропускная
+способность разреза равна сумме пропускных способностей разрезанных
+ребер. Среди всех разрезов сети разрез с минимальной пропускной
+способностью определяет максимальный поток в сети.</p>
+<p><strong>Пример:</strong></p>
+<div class="line-block">
+<div class="line">Рассмотрим сеть, показанную на Рисунке 3. На этом рисунке при
+обозначении пропускных способностей двунаправленных ребер
+придерживались соглашения, принятого ранее. Например, для ребра (3, 4)
+пропускная способность в направлении 3<span class="math notranslate nohighlight">\(\to\)</span>4 равна 10, а в
+направлении 4<span class="math notranslate nohighlight">\(\to\)</span>3 равна 5.</div>
+</div>
+<div class="figure align-center" id="id12">
+<img alt="_images/36.png" src="_images/36.png" />
+<p class="caption"><span class="caption-text">Рисунок 3</span><a class="headerlink" href="#id12" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p>Разрезы, представленные на Рисунке 3, имеют следующие пропускные
+способности:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 49%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Разрез</p></th>
+<th class="head"><p>«Разрезанные» ребра</p></th>
+<th class="head"><p>Пропускная способность</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>(1, 2), (1, 3), (1, 4)</p></td>
+<td><p>10 + 30 + 20 = 60</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>(1, 3), (1, 4), (2, 3), (2, 5)</p></td>
+<td><p>30 + 10 + 40 + 30 = 110</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>(2, 5), (3, 5), (4, 5)</p></td>
+<td><p>30 + 20 + 20 = 70</p></td>
+</tr>
+</tbody>
+</table>
+<p>Вывод, который можно сделать из этих трех разрезов, заключается в том,
+что максимальный поток не может превышать 60 единиц. Но мы не можем
+сказать, какой максимальный поток на самом деле, так как не перебрали
+все возможные разрезы сети. К сожалению, перебор всех разрезов является
+непростой задачей. Поэтому для определения максимального потока в сети
+не используются алгоритмы, основанные на полном переборе разрезов.</p>
+</div>
+<div class="section" id="id5">
+<h2>5.4. Алгоритм Форда-Фалкерсона нахождения максимального потока<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Обнуляем все потоки.</p></li>
+<li><p>В сети находим любой путь из источника в сток. Если такого пути нет,
+останавливаемся.</p></li>
+<li><p>Пускаем через найденный путь максимально возможный поток:</p>
+<ol class="arabic simple">
+<li><p>На найденном пути в остаточной сети ищем ребро с минимальной
+пропускной способностью <span class="math notranslate nohighlight">\(C_{min}\)</span>. (<span class="math notranslate nohighlight">\(\beta\)</span>=min
+<span class="math notranslate nohighlight">\(C_{ij}\)</span>&gt;0)</p></li>
+<li><p>Для каждого ребра на найденном пути увеличиваем поток на
+<span class="math notranslate nohighlight">\(C_{min}\)</span>, а в противоположном ему — уменьшаем на
+<span class="math notranslate nohighlight">\(C_{min}\)</span>.
+(<span class="math notranslate nohighlight">\(\varphi_{ij}\)</span>=<span class="math notranslate nohighlight">\(\varphi_{ij} \pm C_{min}\)</span>)</p></li>
+<li><p>Модифицируем остаточную сеть. Для всех рёбер на найденном пути, а
+также для противоположных им рёбер, вычисляем новую пропускную
+способность. Если она стала ненулевой, добавляем ребро к
+остаточной сети, а если обнулилась, стираем его.
+(<span class="math notranslate nohighlight">\(C_{ij}\)</span>=<span class="math notranslate nohighlight">\(C_{ij}\)</span>-<span class="math notranslate nohighlight">\(C_{min}\)</span>)</p></li>
+</ol>
+</li>
+<li><p>Возвращаемся на шаг 2.</p></li>
+</ol>
+<p>Величина максимального потока в транспортной сети T равна минимальной из
+пропускных способностей его сечений.</p>
+<p><span class="math notranslate nohighlight">\(\varphi_{max}=\varphi_{max}+C_{ij}\)</span></p>
+</div>
+<div class="section" id="id6">
+<h2>5.5. Практическое применение максимального потока<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id7">
+<h3>5.5.1. Пример решения типовой задачи с помощью максимального потока<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Пример:</strong></p>
+<p>Рассмотрим транспортную сеть T, пусть <span class="math notranslate nohighlight">\(\varphi_0\)</span> - нулевой поток.</p>
+<div class="figure align-center" id="id13">
+<img alt="_images/28.png" src="_images/28.png" />
+<p class="caption"><span class="caption-text">Рисунок 4</span><a class="headerlink" href="#id13" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p>Нашли путь (обозначен красным цветом)</p>
+<div class="figure align-center" id="id14">
+<img alt="_images/29.png" src="_images/29.png" />
+<p class="caption"><span class="caption-text">Рисунок 5</span><a class="headerlink" href="#id14" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p><span class="math notranslate nohighlight">\(P_1\)</span>=s(s,a)a(a,b)b(b,d)d(d,t)t.</p>
+<div class="line-block">
+<div class="line">Тогда <span class="math notranslate nohighlight">\(\beta\)</span>=min <span class="math notranslate nohighlight">\(C_{ij}\)</span>=min(5, 4, 5, 5)=4, и поток
+<span class="math notranslate nohighlight">\(\varphi_{max}\)</span>=4.</div>
+<div class="line">Дуга (a,b) - насыщенная
+<span class="math notranslate nohighlight">\(C_{ij}\)</span>=<span class="math notranslate nohighlight">\(C_{ij}\)</span>-<span class="math notranslate nohighlight">\(C_{min}\)</span>=4-4=0, поэтому мы
+ее вычеркиваем. Вычисляем пропускную способность и увеличиваем поток
+для каждого ребра.</div>
+</div>
+<div class="figure align-center" id="id15">
+<img alt="_images/30.png" src="_images/30.png" />
+<p class="caption"><span class="caption-text">Рисунок 6</span><a class="headerlink" href="#id15" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p>Нашли новый путь (обозначен синим цветом)</p>
+<div class="figure align-center" id="id16">
+<img alt="_images/31.png" src="_images/31.png" />
+<p class="caption"><span class="caption-text">Рисунок 7</span><a class="headerlink" href="#id16" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p><span class="math notranslate nohighlight">\(P_2\)</span>=s(s,b)b(b,d)d(d,t)t.</p>
+<div class="line-block">
+<div class="line">Тогда <span class="math notranslate nohighlight">\(\beta\)</span>=min <span class="math notranslate nohighlight">\(C_{ij}\)</span>=min(3, 1, 1, 1)=1, и поток
+<span class="math notranslate nohighlight">\(\varphi_{max}\)</span>=4+1=5.</div>
+<div class="line">Дуги (b,d), (d,t) - насыщенные
+<span class="math notranslate nohighlight">\(C_{ij}\)</span>=<span class="math notranslate nohighlight">\(C_{ij}\)</span>-<span class="math notranslate nohighlight">\(C_{min}\)</span>=1-1=0, поэтому мы
+их вычеркиваем. Вычисляем пропускную способность и увеличиваем поток
+для каждого ребра.</div>
+</div>
+<div class="figure align-center" id="id17">
+<img alt="_images/32.png" src="_images/32.png" />
+<p class="caption"><span class="caption-text">Рисунок 8</span><a class="headerlink" href="#id17" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p>Нашли еще один путь (обозначен зеленым цветом)</p>
+<div class="figure align-center" id="id18">
+<img alt="_images/33.png" src="_images/33.png" />
+<p class="caption"><span class="caption-text">Рисунок 9</span><a class="headerlink" href="#id18" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<p><span class="math notranslate nohighlight">\(P_3\)</span>=s(s,a)a(a,b)c(c,t)t.</p>
+<div class="line-block">
+<div class="line">Тогда <span class="math notranslate nohighlight">\(\beta\)</span>=min <span class="math notranslate nohighlight">\(C_{ij}\)</span>=min(1, 2, 7)=1, и поток
+<span class="math notranslate nohighlight">\(\varphi_{max}\)</span>=5+1=6.</div>
+<div class="line">Дуга (s,a) - насыщенная
+<span class="math notranslate nohighlight">\(C_{ij}\)</span>=<span class="math notranslate nohighlight">\(C_{ij}\)</span>-<span class="math notranslate nohighlight">\(C_{min}\)</span>=1-1=0, поэтому мы
+ее вычеркиваем. Вычисляем пропускную способность и увеличиваем поток
+для каждого ребра.</div>
+</div>
+<div class="figure align-center" id="id19">
+<img alt="_images/34.png" src="_images/34.png" />
+<p class="caption"><span class="caption-text">Рисунок 10</span><a class="headerlink" href="#id19" title="Постоянная ссылка на рисунок">¶</a></p>
+</div>
+<div class="line-block">
+<div class="line">Как видно путей из источника в сток не осталось, значит задача
+завершена.</div>
+<div class="line">Получаем, что максимальный поток <span class="math notranslate nohighlight">\(\varphi_{max}\)</span>=6, так же
+соблюдается закон сохранения вещества - общее количество вещества,
+вытекающего из источника, совпадает с общим количеством вещества,
+поступающего в сток.</div>
+</div>
+<p><strong>Oтвет:</strong> <span class="math notranslate nohighlight">\(\varphi_{max}\)</span>=6.</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>5.6. Перейти к практике<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gametheory.html" class="btn btn-neutral float-right" title="6. Теория игр" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="optimal.html" class="btn btn-neutral" title="4. Задача о распределении средств" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

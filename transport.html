@@ -1,0 +1,791 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Транспортная задача &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="4. Задача о распределении средств" href="optimal.html"/>
+        <link rel="prev" title="2. Симплекс метод" href="simplex.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graph.html">1. Графический метод решения задач линейного программирования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplex.html">2. Симплекс метод</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Транспортная задача</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. Постановка транспортной задачи. Транспортная таблица</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.2. Сведение открытой транспортной задачи к закрытой</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3.3. Первоначальный план перевозок</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.1. Составление первоначального плана перевозок с помощью метода северо-западного угла</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.3.2. Составление первоначального плана перевозок с помощью метода наименьшей стоимости</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">3.4. Вырожденные планы. Циклы и пополнение плана</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">3.5. Проверка оптимальности плана и перераспределение поставок с помощью метода потенциалов</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">3.5.1. Вычисление потенциалов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">3.5.2. Проверка оптимальности плана</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">3.5.3. Перераспределение поставок</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">3.6. Практическое применение транспортной задачи</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">3.6.1. Пример решения транспортной задачи</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">3.7. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optimal.html">4. Задача о распределении средств</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maxflow.html">5. Задача о максимальном потоке</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gametheory.html">6. Теория игр</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. Транспортная задача</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/transport.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="optimal.html" class="btn btn-neutral float-right" title="4. Задача о распределении средств" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="simplex.html" class="btn btn-neutral" title="2. Симплекс метод" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3. Транспортная задача<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>3.1. Постановка транспортной задачи. Транспортная таблица<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Транспортная задача - это математическая задача линейного
+программирования специального вида о поиске оптимального распределения
+однородных объектов с минимизацией затрат на перемещение.</p>
+<p>Имеется <span class="math notranslate nohighlight">\({m}\)</span> поставщиков <span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>, …,
+<span class="math notranslate nohighlight">\(A_m\)</span>, у которых сосредоточены запасы одного и того же груза в
+количестве <span class="math notranslate nohighlight">\(a_1\)</span>, <span class="math notranslate nohighlight">\(a_2\)</span>, …, <span class="math notranslate nohighlight">\(a_m\)</span> единиц,
+соответственно. Этот груз нужно доставить <span class="math notranslate nohighlight">\({n}\)</span> потребителям
+<span class="math notranslate nohighlight">\(B_1\)</span>, <span class="math notranslate nohighlight">\(B_2\)</span>, …, <span class="math notranslate nohighlight">\(B_n\)</span>, заказавшим <span class="math notranslate nohighlight">\(b_1\)</span>,
+<span class="math notranslate nohighlight">\(b_2\)</span>, …, <span class="math notranslate nohighlight">\(b_n\)</span> единиц этого груза, соответственно.
+Известны также все тарифы перевозок груза <span class="math notranslate nohighlight">\(c_{ij}\)</span> (стоимость
+перевозок единицы груза) от поставщика <span class="math notranslate nohighlight">\(A_i\)</span> к потребителю
+<span class="math notranslate nohighlight">\(B_j\)</span>. Требуется составить такой план перевозок, при котором общая
+стоимость всех перевозок была бы минимальной.</p>
+<p>Условие транспортной задачи удобно записать в виде следующей
+Транспортной таблицы 1.1.</p>
+<p><em>Транспортная таблица 1</em></p>
+<div class="figure align-center">
+<img alt="_images/Screenshot_4.png" src="_images/Screenshot_4.png" />
+</div>
+<p>Обозначим суммарный запас груза у всех поставщиков символом a, а
+суммарную потребность в грузе у всех потребителей – символом b.</p>
+<p>Тогда</p>
+<div class="line-block">
+<div class="line">a=<span class="math notranslate nohighlight">\({ \sum_{i=1}^m a_i}\)</span>, <span class="math notranslate nohighlight">\({\qquad}\)</span>
+b=<span class="math notranslate nohighlight">\({ \sum_{j=1}^n b_j}\)</span>.</div>
+</div>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>1) Транспортная задача называется закрытой,если
+a=b.Еслиже <span class="math notranslate nohighlight">\(a \neq b\)</span>, то транспортная задача называется открытой.</p>
+<p>Далее будет показано, что в случае закрытой задачи от поставщиков будут
+вывезены все запасы груза, и все заявки потребителей будут удовле-
+творены.</p>
+<p>В случае открытой задачи при a&lt;b весь груз будет вывезен, однако будут
+недопоставки груза экономически невыгодным потребителям. При a&gt;b ,
+наоборот, будут удовлетворены все потребители, но часть груза останется
+на складах экономически невыгодных поставщиков.</p>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\({\qquad}\)</span>2) Пусть <span class="math notranslate nohighlight">\(x_{ij}\)</span> (<span class="math notranslate nohighlight">\(x_{ij} \geq\)</span> 0) –
+количество груза, отправляемого поставщи- ком <span class="math notranslate nohighlight">\(A_i\)</span> потребителю
+<span class="math notranslate nohighlight">\(B_j\)</span>. Тогда суммарные затраты Z на перевозки будут вычисляться
+по формуле</div>
+</div>
+<div class="line-block">
+<div class="line">Z=<span class="math notranslate nohighlight">\({ \sum_{i=1}^m \sum_{j=1}^n c_{ij}x_{ij}}\)</span>.</div>
+</div>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>3) Матрица X с неотрицательными элементами
+<span class="math notranslate nohighlight">\(x_{ij}\)</span> называется планом перевозок.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>4) Функция Z называется целевой функцией.</p>
+<p>Математическая формулировка транспортной задачи заключается в нахождении
+плана перевозок X =<span class="math notranslate nohighlight">\(x_{ij}\)</span>, который удовлетворяет системе
+ограничений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            { \sum_{j=1}^n x_{ij}=a_i}, i=1,2,...,m,\\
+            { \sum_{i=1}^m x_{ij}=b_j}, j=1,2,...,n,\\
+        \end{cases}\end{split}\]</div>
+<p> и доставляет минимум целевой функции Z.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>5) План перевозок, реализующий минимум целевой функции
+Z, называется оптимальным.</p>
+<p>Смысл первой группы равенств в системе ограничений (см. п.4) состоит в
+том, что суммарное количество груза, отправленное всем потребителям каж-
+дым поставщиком, равно запасу груза у этого поставщика. Вторая группа
+ра- венств в системе ограничений (см. п.4) показывает, что суммарное
+количество груза, полученное каждым потребителем от всех поставщиков,
+равно заказу этого потребителя.</p>
+</div>
+<div class="section" id="id3">
+<h2>3.2. Сведение открытой транспортной задачи к закрытой<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Решение транспортной задачи начинается с выяснения вопроса о том,
+является ли задача открытой или закрытой.</p>
+<p>Если задача является открытой, то необходимо провести процедуру закрытия
+задачи. С этой целью при a&lt;b добавляем фиктивного поставщика
+<span class="math notranslate nohighlight">\(A'_{m+1}\)</span> с запасом груза <span class="math notranslate nohighlight">\(a'_{m+1}=b-a\)</span>. Если же a&gt;b, то
+добавляем фиктивного потребителя <span class="math notranslate nohighlight">\(B'_{n+1}\)</span> с заказом груза
+<span class="math notranslate nohighlight">\(b'_{n+1}=a-b\)</span>.</p>
+<p>В обоих случаях соответствующие фиктивным объектам тарифы перевозок
+<span class="math notranslate nohighlight">\(c'_{ij}\)</span> полагаем равными нулю. В результате суммарная стоимость
+перевозок Z не изменяется.</p>
+</div>
+<div class="section" id="id4">
+<h2>3.3. Первоначальный план перевозок<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Транспортная задача относится к задачам линейного программирования, и ее
+можно было бы решить симплекс-методом. Но поскольку система огра-
+ничений транспортной задачи проще, чем система ограничений ОЗЛП, то это
+дает возможность вместо использования объемных симплекс-таблиц применить
+более удобный метод, который состоит из следующих этапов:</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>1. Составление первоначального плана перевозок.</p>
+<p><span class="math notranslate nohighlight">\({\qquad}\)</span>2. Последовательные улучшения плана перевозок
+(перераспределение поставок) до тех пор, пока план перевозок не станет
+оптимальным.</p>
+<p>Решение ОЗЛП начинается с нахождения опорного плана. Для транспортной
+задачи такой план всегда существует. Опишем два метода составле- ния
+опорного плана (первоначального плана перевозок). При этом
+ненулевыеэлементы <span class="math notranslate nohighlight">\(x_{ij}\)</span> плана перевозок будем записывать в
+соответствующие пустые клетки транспортной таблицы с исходными данными
+задачи, а символом (i, j) будем обозначать клетку таблицы, содержащую
+информацию о перевозках груза от поставщика <span class="math notranslate nohighlight">\(A_i\)</span> к потребителю
+<span class="math notranslate nohighlight">\(B_j\)</span>.</p>
+<div class="section" id="id5">
+<h3>3.3.1. Составление первоначального плана перевозок с помощью метода северо-западного угла<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Составление первоначального плана перевозок начнем с перевозки запасов
+поставщика <span class="math notranslate nohighlight">\(A_1\)</span>. Будем за счет его запасов максимально возможно
+удовлетворять заказы сначала потребителя <span class="math notranslate nohighlight">\(B_1\)</span>, затем <span class="math notranslate nohighlight">\(B_2\)</span>
+и так далее. Таким образом, мы будем заполнять таблицу, начиная с клетки
+(1,1), и двигаться вправо по строке до тех пор, пока остаток запасов
+поставщика <span class="math notranslate nohighlight">\(A_1\)</span> не окажется меньше заказа очередного потребителя.
+Для выполнения этого заказа используем остатки запаса первого
+поставщика, а недостающую часть добавим из запасов поставщика
+<span class="math notranslate nohighlight">\(A_2\)</span>, то есть переместимся на следующую строку таблицы по
+столбцу, соответствующему указанному потребителю. Далее аналогичным
+образом распределим запасы поставщика <span class="math notranslate nohighlight">\(A_2\)</span>, затем <span class="math notranslate nohighlight">\(A_3\)</span> и
+так далее.</p>
+<p>Проиллюстрируем это на следующем примере (Таблица 2).</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 2</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/6.png" src="_images/6.png" />
+</div>
+<p>Распределяя запасы поставщика <span class="math notranslate nohighlight">\(A_1\)</span> сначала потребителю
+<span class="math notranslate nohighlight">\(B_1\)</span>, а затем <span class="math notranslate nohighlight">\(B_2\)</span>, получаем: <span class="math notranslate nohighlight">\(x_{11}\)</span>=100,
+<span class="math notranslate nohighlight">\(x_{12}\)</span>=40. После этого у поставщика <span class="math notranslate nohighlight">\(A_1\)</span> остается еще
+20 единиц груза, а потребителю <span class="math notranslate nohighlight">\(B_3\)</span> нужно 80 единиц. Удовлетворим
+спрос поребителя <span class="math notranslate nohighlight">\(B_3\)</span>, отправив ему 20 единиц груза, оставшихся у
+поставщика <span class="math notranslate nohighlight">\(A_1\)</span>, 30 единиц груза от поставщика <span class="math notranslate nohighlight">\(A_2\)</span> и 30
+единиц груза от <span class="math notranslate nohighlight">\(A_3\)</span>. Следовательно,</p>
+<p><span class="math notranslate nohighlight">\(x_{13}\)</span>=20, <span class="math notranslate nohighlight">\(x_{23}\)</span>=30 и <span class="math notranslate nohighlight">\(x_{33}\)</span>=30,</p>
+<p>причем у поставщика <span class="math notranslate nohighlight">\(A_3\)</span> остается 60 последних единиц груза. Этот
+груз и отправим потребителю <span class="math notranslate nohighlight">\(B_4\)</span>. Таким образом
+<span class="math notranslate nohighlight">\(x_{34}\)</span>=60, все запасы груза вывезены и все потребители
+удовлетворены.</p>
+<p>Теперь мы можем подсчитать общую стоимость всех перевозок по данному
+плану:</p>
+<p>Z=4<span class="math notranslate nohighlight">\(\cdot\)</span>100+8<span class="math notranslate nohighlight">\(\cdot\)</span>40+10<span class="math notranslate nohighlight">\(\cdot\)</span>20+2<span class="math notranslate nohighlight">\(\cdot\)</span>30+6<span class="math notranslate nohighlight">\(\cdot\)</span>30+5<span class="math notranslate nohighlight">\(\cdot\)</span>60=1460.</p>
+<p>Изложенный метод северо-западного угла прост в реализации, однако трудно
+надеяться, что он даст экономичный первоначальный план, поскольку при
+распределении перевозок мы совершенно не учитывали их стоимость.</p>
+</div>
+<div class="section" id="id6">
+<h3>3.3.2. Составление первоначального плана перевозок с помощью метода наименьшей стоимости<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Построение плана начнем с клетки с наименьшим тарифом перевозок. При
+наличии нескольких клеток с одинаковыми тарифами выберем любую из них.
+Пусть это будет клетка (i, j) . Запишем в эту клетку элемент
+<span class="math notranslate nohighlight">\(x_{ij}\)</span>=min(<span class="math notranslate nohighlight">\(a_i\)</span>,<span class="math notranslate nohighlight">\(b_j\)</span>). Если
+<span class="math notranslate nohighlight">\(a_i\)</span>&lt;<span class="math notranslate nohighlight">\(b_j\)</span>, то запасы поставщика <span class="math notranslate nohighlight">\(A_i\)</span> исчерпаны, а
+потребителю <span class="math notranslate nohighlight">\(B_j\)</span> требуется еще <span class="math notranslate nohighlight">\(b'_j=b_j-a_i\)</span> единиц груза.
+Поэтому, не принимая более во внимание i-ю строку, снова ищем клетку с
+наименьшей стоимостью перевозок и заполняем ее с учетом изменившихся
+потребностей. В случае <span class="math notranslate nohighlight">\(a_i\)</span>&gt;<span class="math notranslate nohighlight">\(b_j\)</span> из рассмотрения
+исключается j-й столбец, а запасы <span class="math notranslate nohighlight">\(A_i\)</span> полагаются равными
+<span class="math notranslate nohighlight">\(a'_i=a_i-b_j\)</span>. Продолжаем этот процесс до тех пор, пока все
+запасы не будут исчерпаны, а все потребности удовлетворены.</p>
+<p>Необходимо отметить, что при наличии в таблице клеток с одинаковыми
+тарифами, планы, полученные с помощью этого метода, могут быть разными,
+однако они, несомненно, ближе к оптимальному плану, чем план,
+составленный по методу северо-западного угла.</p>
+<p>Сформируем теперь первоначальный план по методу наименьшей стоимости для
+рассмотренного в параграфе 2.3.1 примера и сравним результаты (Таблица
+3). Поскольку наименьший тариф (число 2) стоит в клетке (2,3), то
+запишем в эту клетку элемент <span class="math notranslate nohighlight">\(x_{23}\)</span>=30. Тогда
+<span class="math notranslate nohighlight">\(b'_3\)</span>=50, а 2-ю строку таблицы можно больше не учитывать. Среди
+оставшихся клеток имеются три клетки с наименьшим тарифом перевозок,
+равным 4: (1,1); (3,1) и (3,2). Выберем, например, клетку (1,1) и
+запишем в нее число <span class="math notranslate nohighlight">\(x_{11}\)</span>=100. Получаем, что
+<span class="math notranslate nohighlight">\(a'_1\)</span>=60, а 1-й столбец таблицы больше не рассматриваем. Теперь
+наименьший тариф, равный 4, проставлен в клетке (3,2), поэтому
+<span class="math notranslate nohighlight">\(x_{32}\)</span>=40, <span class="math notranslate nohighlight">\(b'_3\)</span>=50 и 2-й столбец больше не нужен.
+Далее выбираем клетку (1,4) с тарифом 5 и пишем в нее
+<span class="math notranslate nohighlight">\(x_{14}\)</span>=60. Исключив из рассмотрения сразу 1-ю строку и 4-ый
+столбец (поскольку <span class="math notranslate nohighlight">\(a'_1\)</span>=<span class="math notranslate nohighlight">\(b_4\)</span>= 60), переходим к
+последней клетке (3,3), в ко- торую записываем перевозку
+<span class="math notranslate nohighlight">\(x_{33}\)</span>=50.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 3</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/7.png" src="_images/7.png" />
+</div>
+<p>Найдем суммарную стоимость перевозок по этому плану:</p>
+<p>Z=4<span class="math notranslate nohighlight">\(\cdot\)</span>100+5<span class="math notranslate nohighlight">\(\cdot\)</span>60+2<span class="math notranslate nohighlight">\(\cdot\)</span>30+4<span class="math notranslate nohighlight">\(\cdot\)</span>40+6<span class="math notranslate nohighlight">\(\cdot\)</span>50=1220.</p>
+<p>Сравнивая это значение со стоимостью плана, полученного по методу
+северо-западного угла, видим, что 1220&lt;1460, то есть мы получили более
+выгодный план перевозок.</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>3.4. Вырожденные планы. Циклы и пополнение плана<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Прежде, чем перейти к анализу оптимальности планов и способам их
+улучшения, выясним, каким требованиям должны удовлетворять составляемые
+планы. Для этого вернемся к системе ограничений</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+            { \sum_{j=1}^n x_{ij}=a_i}, i=1,2,...,m,\\
+            { \sum_{i=1}^m x_{ij}=b_j}, j=1,2,...,n,\\
+        \end{cases}\end{split}\]</div>
+<p> В соответствии с определением плана перевозок у матрицы
+X=<span class="math notranslate nohighlight">\(x_{ij}\)</span> сумма элементов i-й строки равняется <span class="math notranslate nohighlight">\(a_i\)</span>,
+i=1,2,…,m, а сумма элементов j-о столбца равняется <span class="math notranslate nohighlight">\(b_j\)</span> ,
+j=1,2,…,n. Условие закрытости транспортной задачи a=b означает, что
+среди m+n уравнений системы независимыми являются только m+n-1
+уравнений, поэтому в любом базисном решении этой системы должно быть
+m+n-1 базисных переменных. Поскольку свободные переменные в таком
+решении равны нулю, то в транспортной таблице им будут соответствовать
+пустые клетки.</p>
+<ul class="simple">
+<li><p>Клетки таблицы, в которые записаны отличные от нуля перевозки,
+называются базисными, а остальные (пустые) - свободными;</p></li>
+<li><p>План называется вырожденным, если количество базисных клеток в нем
+меньше, чем m+n-1. Если на каком-то этапе решения получился
+вырожденный план, то его необходимо пополнить, проставив в
+недостающем числе клеток нулевую перевозку и превратив, тем самым,
+эти клетки в базисные. Общий баланс и суммарная стоимость перевозок
+плана при этом не изменятся. Однако проводить пополнение плана,
+выбирая клетки произвольно, нельзя. Приведем условия, которым должен
+соответствовать пополненный план.</p></li>
+<li><p>Циклом в транспортной таблице называется несколько клеток,
+соединенных замкнутой ломаной линией так, чтобы две соседние вершины
+ломаной были расположены либо в одной строке, либо в одном столбце.
+Ломаная линия может иметь точки самопересечения, но не в клетках
+цикла.</p></li>
+<li><p>План называется ациклическим, если его базисные клетки не содержат
+циклов. Доказано, что оптимальные планы являются ациклическими,
+поэтому и первоначальный план также должен удовлетворять этому
+требованию. Заметим, что планы, полученные с помощью метода
+северо-западного угла и метода наименьшей стоимости, ациклические.
+Однако если план оказался вырожденным, то при его пополнении
+требование ацикличности необходимо учитывать.</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Возвращаясь к рассматриваемому примеру, видим, что первоначальный
+план, полученный по методу наименьшей стоимости, имеет 5 базисных кле-
+ток, однако m+n-1=3+4-1=6. Значит, план нужно пополнить еще одной
+базисной клеткой. Попробуем выбрать для этого клетку (2,2). Соединив
+базисные клетки горизонтальными и вертикальными отрезками, получаем:</div>
+</div>
+<div class="figure align-center">
+<img alt="_images/11.png" src="_images/11.png" />
+</div>
+<div class="line-block">
+<div class="line">Видим, что пополненный таким образом план содержит цикл из клеток
+(2,2); (2,3); (3,3) и (3,2), следовательно, клетка (2,2) была выбрана
+неудачно. Взяв вместо нее клетку (2,4), получим ациклический план.
+Поэтому можно заполнить эту клетку, положив <span class="math notranslate nohighlight">\(x_{24}\)</span>=0.</div>
+</div>
+<div class="figure align-center">
+<img alt="_images/12.png" src="_images/12.png" />
+</div>
+</div>
+<div class="section" id="id8">
+<h2>3.5. Проверка оптимальности плана и перераспределение поставок с помощью метода потенциалов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для анализа полученных планов и их последующего улучшения удобно ввести
+дополнительные характеристики пунктов отправления и назначения,
+называемые потенциалами.</p>
+<div class="section" id="id9">
+<h3>3.5.1. Вычисление потенциалов<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Сопоставим каждому поставщику <span class="math notranslate nohighlight">\(A_i\)</span> и каждому потребителю
+<span class="math notranslate nohighlight">\(B_j\)</span> величины <span class="math notranslate nohighlight">\(u_i\)</span> и <span class="math notranslate nohighlight">\(v_j\)</span> соответственно так, чтобы
+для всех базисных клеток плана были выполнены соотношения</p>
+<p><span class="math notranslate nohighlight">\(u_i\)</span>+<span class="math notranslate nohighlight">\(v_j\)</span>=<span class="math notranslate nohighlight">\(c_{ij}\)</span>, i=1,2,…,m,
+j=1,2,…,n.</p>
+<p>Поскольку число базисных клеток в плане равно m+n-1 (вырожденные планы
+должны быть предварительно пополнены), то для определения потенциалов
+получается система из m+n-1 уравнений с m+n неизвестными. Такая система
+имеет бесконечное множество решений. Нам требуется любое ее решение.
+Обычно для простоты полагают один из потенциалов равным нулю и затем
+вычисляют остальные. В транспортной таблице для потенциалов <span class="math notranslate nohighlight">\(v_1\)</span>,
+<span class="math notranslate nohighlight">\(v_2\)</span>, …, <span class="math notranslate nohighlight">\(v_n\)</span> заводится дополнительные строка, а для
+потенциалов <span class="math notranslate nohighlight">\(u_1\)</span>, <span class="math notranslate nohighlight">\(u_2\)</span>, …, <span class="math notranslate nohighlight">\(u_n\)</span> – дополнительный
+столбец, куда проставляются найденные значения.</p>
+</div>
+<div class="section" id="id10">
+<h3>3.5.2. Проверка оптимальности плана<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для каждой свободной клетки плана вычислим разности
+<span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span>=<span class="math notranslate nohighlight">\(c_{ij}\)</span>-(<span class="math notranslate nohighlight">\(u_i\)</span>+<span class="math notranslate nohighlight">\(v_j\)</span>) и
+запишем полученные значения в левых нижних углах соответствующих клеток.
+Заметим, что для базисных клеток выполнено соотношение
+<span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span>=0, и этим фактом можно пользоваться для контроля
+правильности нахождения потенциалов.</p>
+<p>План является оптимальным, если все разности
+<span class="math notranslate nohighlight">\(\Delta c_{ij} \geq 0\)</span>.</p>
+<p>В противном случае план можно улучшить следующим способом.</p>
+</div>
+<div class="section" id="id11">
+<h3>3.5.3. Перераспределение поставок<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Найдем клетку с наибольшей по абсолютной величине отрицательной
+разностью <span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> и построим цикл, в котором кроме этой
+клетки все остальные являются базисными. Такой цикл всегда существует и
+единственен.</p>
+<p>Заметим, что в новом плане суммы элементов по строкам и столбцам должны
+остаться прежними, поэтому изменение значения в одной клетке цикла
+повлечет за собой соответствующие изменения значений во всех остальных
+клетках этого цикла. Так как в свободной клетке значение будет
+увеличено, то проставим в ее правом нижнем углу знак <span class="math notranslate nohighlight">\(\oplus\)</span>.
+Теперь пройдем по всей ломаной цикла, проставляя в правых нижних углах
+клеток поочередно знаки <span class="math notranslate nohighlight">\(\oplus\)</span> и <span class="math notranslate nohighlight">\(\ominus\)</span>.</p>
+<p>Груз будет перераспределен по клеткам цикла на величину
+<span class="math notranslate nohighlight">\(\Delta x\)</span>=min<span class="math notranslate nohighlight">\(x_{ij}\)</span> следующим образом. В клетках со
+знаком «плюс» значение перевозки нужно увеличить на величину
+<span class="math notranslate nohighlight">\(\Delta x\)</span>, а в клетках со знаком «минус» – уменьшить на величину
+<span class="math notranslate nohighlight">\(\Delta x\)</span>. Так как после пересчета у нас добавилась лишняя
+базисная клетка, то их количество необходимо сократить, убрав нуль в
+одной из клеток цикла. Если таких клеток получилось несколько, то
+свободной делаем ту из них, в которой тариф перевозок максимален.</p>
+<p>После этого полученный план проверяется на оптимальность описанным выше
+способом. Перераспределение груза производится до тех пор, пока
+очередной план не станет оптимальным. На этом действие алгоритма
+завершается.</p>
+<p>Покажем, как нужно пользоваться методом потенциалов, на примере
+первоначального плана, полученного выше по методу северо-западного угла.</p>
+<div class="line-block">
+<div class="line">Вначале проверим, не является ли этот план вырожденным. Так как
+m+n-1=3+4-1=6, и число базисных клеток в плане также равно 6, то план
+в пополнении не нуждается. Найдем потенциалы по базисным клеткам
+таблицы с помощью формул , положив <span class="math notranslate nohighlight">\(u_1\)</span>=0,</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           u_1+v_1=4,\\
+           u_1+v_2=8,\\
+           u_1+v_3=10,\\
+           u_2+v_3=2,\\
+           u_3+v_3=6,\\
+           u_3+v_4=5,\\
+           u_1=0,\\
+        \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           u_1=0,\\
+           u_2=-8,\\
+           u_3=-4,\\
+           v_1=4,\\
+           v_2=8,\\
+           v_3=10,\\
+           v_4=9,\\
+        \end{cases}\end{split}\]</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">и занесем полученные значения в таблицу. Вычислим теперь разности
+<span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> для свободных клеток и также проставим эти
+данные в левых нижних углах соответствующих клеток. В итоге получим
+следующую Tаблицу 4.</div>
+</div>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 4</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/8.png" src="_images/8.png" />
+</div>
+<p>Поскольку <span class="math notranslate nohighlight">\(\Delta c_{14}\)</span>=-4&lt;0, то этот план не является
+оптимальным. Перераспределим груз по циклу, обозначенному в Tаблице 4
+пунктиром, на величину <span class="math notranslate nohighlight">\(\Delta x\)</span>= min(20,60)=20. Для этого в
+клетках со знаком «плюс» увеличим поставки на 20 единиц, а клетках со
+знаком «минус» – поставки на столько же уменьшим. Для сохранения
+количества базисных клеток число 0 в клетке (1,3) не записываем, и она
+становится свободной.</p>
+<p>Вычислив потенциалы и разности <span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> для нового плана,
+видим, что снова есть отрицательная разность <span class="math notranslate nohighlight">\(\Delta c_{32}\)</span>=-4.
+Поэтому придется еще раз улучшать план. С этой целью перераспределим
+груз по циклу, отмеченному в таблице 5 пунктиром, на величину
+<span class="math notranslate nohighlight">\(\Delta x\)</span>= min(40,40)=40. Так как в результате в цикле
+получаются две клетки с нулевыми перевозками: (1,3) и (3,4) , то сделаем
+свободной клетку (1,3), поскольку ее тариф перевозок больше. После
+перераспределения груза по циклу вычислим все необходимые разности
+<span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span>.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 5</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/9.png" src="_images/9.png" />
+</div>
+<p>Как видим, все <span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> неотрицательны, значит, план
+оптимален (Tаблица 6).</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 6</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/10.png" src="_images/10.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>3.6. Практическое применение транспортной задачи<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id13">
+<h3>3.6.1. Пример решения транспортной задачи<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Пример:</strong> На складах трех поставщиков <span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>,
+<span class="math notranslate nohighlight">\(A_3\)</span> хранится 300, 250 и 200 единиц одного и того же груза. Этот
+груз требуется доставить четырем потребителям <span class="math notranslate nohighlight">\(B_1\)</span>, <span class="math notranslate nohighlight">\(B_2\)</span>,
+<span class="math notranslate nohighlight">\(B_3\)</span> и <span class="math notranslate nohighlight">\(B_4\)</span>, заказы которых составляют 220, 150, 250 и 180
+единиц груза соответственно. Стоимости перевозок <span class="math notranslate nohighlight">\(c_{ij}\)</span> единицы
+груза с i-го склада j-му потребителю указаны в правых верхних углах
+соответствующих клеток транспортной Таблицы 1.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 1</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/13.png" src="_images/13.png" />
+</div>
+<p>Составить такой план перевозок груза, при котором общая стоимость всех
+перевозок была бы минимальной.</p>
+<p><strong>Решение:</strong> Поскольку суммарный запас груза а=300+250+200=750 меньше
+суммарной потребности b=220+150+250+180=800, то рассматриваемая
+транспортная задача является открытой. Сведем ее к закрытой, добавив
+фиктивного поставщика <span class="math notranslate nohighlight">\(A'_4\)</span> с нулевыми тарифами перевозок и
+запасом груза <span class="math notranslate nohighlight">\(a'_4\)</span>=b-a=50. Составим первоначальный план
+перевозок с помощью метода наименьшей стоимости, заполняя клетки в
+следующем порядке - получаем Таблицу 2:</p>
+<p>(4,2) <span class="math notranslate nohighlight">\(\rightarrow\)</span> (3,2) <span class="math notranslate nohighlight">\(\rightarrow\)</span> (2,3)
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> (3,4) <span class="math notranslate nohighlight">\(\rightarrow\)</span> (1,1) <span class="math notranslate nohighlight">\(\rightarrow\)</span>
+(1,4).</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 2</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/14.png" src="_images/14.png" />
+</div>
+<p>Перейдем к анализу полученного плана. Заметим, что в этой задаче
+m+n-1=4+4-1=7, а число занятых клеток в имеющемся плане равно 6. Значит,
+необходимо пополнить план еще 1 клеткой, записав в ней 0, так, чтобы
+пополненный план получился ациклическим. Выберем для этой цели,
+например, клетку (4,3).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           u_1+v_1=4,\\
+           u_1+v_4=6,\\
+           u_2+v_3=1,\\
+           u_3+v_2=1,\\
+           u_3+v_4=2,\\
+           u_4+v_2=0,\\
+           u_4+v_3=0,\\
+           u_1=0,\\
+        \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+           u_1=0,\\
+           u_2=-4,\\
+           u_3=-4,\\
+           u_4=-5,\\
+           v_1=4,\\
+           v_2=5,\\
+           v_3=5,\\
+           v_4=6,\\
+        \end{cases}\end{split}\]</div>
+<p>Вычислим потенциалы по базисным клеткам плана и вычислим для свободных
+клеток разности</p>
+<p><span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span>=<span class="math notranslate nohighlight">\(c_{ij}\)</span>-(<span class="math notranslate nohighlight">\(u_i\)</span>+<span class="math notranslate nohighlight">\(v_j\)</span>).</p>
+<p>Получим таблицу 3.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 3</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/15.png" src="_images/15.png" />
+</div>
+<p>Поскольку среди чисел <span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> есть отрицательные, то
+перераспределим груз на величину</p>
+<p><span class="math notranslate nohighlight">\(\Delta x\)</span>=min(80,100,0)=0</p>
+<p>по циклу, обозначенному пунктиром. Клетка (1,3) станет базисной вместо
+клетки (4,3), и мы получим Таблицу 4. План, указанный в Таблице 4, не
+является оптимальным, поскольку</p>
+<p><span class="math notranslate nohighlight">\(\Delta c_{22}\)</span>= <span class="math notranslate nohighlight">\(\Delta c_{44}\)</span>=-1&lt;0.</p>
+<p>Улучшим этот план с помощью перераспределения поставок по циклу,
+обозначенному в Таблице 4 пунктиром, на величину</p>
+<p><span class="math notranslate nohighlight">\(\Delta x\)</span>=min(100,50)=50.</p>
+<p>Получим Таблицу 4.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 4</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/16.png" src="_images/16.png" />
+</div>
+<p>В Таблице 5 перераспределение осуществляется по ступенчатому циклу.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 5</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/17.png" src="_images/17.png" />
+</div>
+<p>После еще одного перераспределения поставок на величину
+<span class="math notranslate nohighlight">\(\Delta x\)</span>=80 , получим Таблицу 6.</p>
+<div class="line-block">
+<div class="line"><em>Транспортная таблица 6</em></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/18.png" src="_images/18.png" />
+</div>
+<p>Заметим, что после каждого перераспределения груза производились
+вычисления потенциалов и разностей <span class="math notranslate nohighlight">\(\Delta c_{ij}\)</span> для полученного
+плана, и эти данные проставлялись в таблицу.</p>
+<p>В Таблице 6 все разности <span class="math notranslate nohighlight">\(\Delta c_{ij} \geq 0\)</span>, следовательно,
+план оптимален. Таким образом,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X=
+        \begin{pmatrix}
+        220 &amp; 0 &amp; 80 &amp; 0 \\
+        0 &amp; 80 &amp; 170 &amp; 0 \\
+        0 &amp; 70 &amp; 0 &amp; 130
+        \end{pmatrix}\end{split}\]</div>
+<p>Фиктивный груз <span class="math notranslate nohighlight">\(a'_4\)</span>=50 в Таблице 6 означает, что потребителю
+<span class="math notranslate nohighlight">\(B_4\)</span> будет недопоставлено 50 единиц груза.</p>
+<p>Найдем суммарную стоимость перевозок по оптимальному плану:</p>
+<p><span class="math notranslate nohighlight">\(Z_{min}\)</span>=<span class="math notranslate nohighlight">\({ \sum_{i=1}^3 \sum_{j=1}^4 c_{ij}x_{ij}}\)</span>=4<span class="math notranslate nohighlight">\(\cdot\)</span>220+3<span class="math notranslate nohighlight">\(\cdot\)</span>80+2<span class="math notranslate nohighlight">\(\cdot\)</span>80+1<span class="math notranslate nohighlight">\(\cdot\)</span>170+1<span class="math notranslate nohighlight">\(\cdot\)</span>70+2<span class="math notranslate nohighlight">\(\cdot\)</span>130=1780.</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>3.7. Перейти к практике<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="optimal.html" class="btn btn-neutral float-right" title="4. Задача о распределении средств" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="simplex.html" class="btn btn-neutral" title="2. Симплекс метод" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>

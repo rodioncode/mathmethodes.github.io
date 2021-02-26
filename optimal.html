@@ -1,0 +1,788 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Задача о распределении средств &mdash; документация Математическое моделирование 25.05.2020</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/jquery.fancybox.min.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/glpi.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Алфавитный указатель"
+              href="genindex.html"/>
+        <link rel="search" title="Поиск" href="search.html"/>
+    <link rel="top" title="документация Математическое моделирование 25.05.2020" href="index.html"/>
+        <link rel="next" title="5. Задача о максимальном потоке" href="maxflow.html"/>
+        <link rel="prev" title="3. Транспортная задача" href="transport.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Математическое моделирование
+          
+
+          
+          </a>
+
+          
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graph.html">1. Графический метод решения задач линейного программирования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplex.html">2. Симплекс метод</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport.html">3. Транспортная задача</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Задача о распределении средств</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. Общая схема метода динамического программирования</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. Практическое применение распределения средств</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.2.1. Пример решения задачи о распределении средств</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.3. Перейти к практике</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maxflow.html">5. Задача о максимальном потоке</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gametheory.html">6. Теория игр</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">7. Методическое пособие</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Ссылки на ресурс для решения практических задач</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Математическое моделирование</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. Задача о распределении средств</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/optimal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="maxflow.html" class="btn btn-neutral float-right" title="5. Задача о максимальном потоке" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="transport.html" class="btn btn-neutral" title="3. Транспортная задача" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. Задача о распределении средств<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="id2">
+<h2>4.1. Общая схема метода динамического программирования<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод динамического программирования дает возможность находить
+последовательные оптимальные решения в задачах, разделенных на этапы.</p>
+<p>Изложим схему применения этого метода на следующей модели. Рассмотрим
+некоторую управляемую систему, которая может находиться в одном из
+нескольких состояний. На каждом этапе в результате применения
+управляющего воздействия (управления) система может изменить свое
+состояние или остаться в прежнем состоянии. Эффективность процесса
+управления характеризуется целевой функцией прибыли, зависящей от
+состояния системы и применяемого управления.</p>
+<p>0 этап. В начальный момент времени система находится в исходном
+состоянии <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>1 этап. В результате применения управления <span class="math notranslate nohighlight">\(y_1\)</span> система переходит
+из состояния <span class="math notranslate nohighlight">\(x_0\)</span> в состояние</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span>=<span class="math notranslate nohighlight">\(g_1\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>,<span class="math notranslate nohighlight">\(y_1\)</span>),</p>
+<p>при этом получается прибыль</p>
+<p><span class="math notranslate nohighlight">\(h_1\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>,<span class="math notranslate nohighlight">\(y_1\)</span>),</p>
+<p>2 этап. В результате применения управления <span class="math notranslate nohighlight">\(y_2\)</span> система переходит
+из состояния <span class="math notranslate nohighlight">\(x_1\)</span> в состояние</p>
+<p><span class="math notranslate nohighlight">\(x_2\)</span>=<span class="math notranslate nohighlight">\(g_2\)</span>(<span class="math notranslate nohighlight">\(x_1\)</span>,<span class="math notranslate nohighlight">\(y_2\)</span>),</p>
+<p>при этом получается прибыль</p>
+<p><span class="math notranslate nohighlight">\(h_2\)</span>(<span class="math notranslate nohighlight">\(x_1\)</span>,<span class="math notranslate nohighlight">\(y_2\)</span>),</p>
+<p>и так далее.</p>
+<p>За N этапов получается последовательность состояний <span class="math notranslate nohighlight">\(x_0\)</span>,
+<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, …, <span class="math notranslate nohighlight">\(x_n\)</span> и последовательность
+управлений <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span>, …, <span class="math notranslate nohighlight">\(y_n\)</span>, где</p>
+<p><span class="math notranslate nohighlight">\(x_{n+1}\)</span>=<span class="math notranslate nohighlight">\(g_n\)</span>(<span class="math notranslate nohighlight">\(x_n\)</span>,<span class="math notranslate nohighlight">\(y_{n+1}\)</span>),
+<span class="math notranslate nohighlight">\({\qquad}\)</span> n=<span class="math notranslate nohighlight">\({\overline{0,N}}\)</span>,</p>
+<p>а общая прибыль на каждом этапе вычисляется по формуле</p>
+<p><span class="math notranslate nohighlight">\(J_n\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(y_1\)</span>,
+…,<span class="math notranslate nohighlight">\(y_n\)</span>)=<span class="math notranslate nohighlight">\(h_1\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>,
+<span class="math notranslate nohighlight">\(y_1\)</span>)+<span class="math notranslate nohighlight">\(h_2\)</span>(<span class="math notranslate nohighlight">\(x_1\)</span>,
+<span class="math notranslate nohighlight">\(y_2\)</span>)+…+<span class="math notranslate nohighlight">\(h_n\)</span>(<span class="math notranslate nohighlight">\(x_{n-1}\)</span>, <span class="math notranslate nohighlight">\(y_n\)</span>),
+<span class="math notranslate nohighlight">\({\qquad}\)</span> n=<span class="math notranslate nohighlight">\({\overline{1,N}}\)</span>,</p>
+<p>Нашей целью является отыскание такой последовательности оптимальных
+управлений {<span class="math notranslate nohighlight">\(y_1^*\)</span>, <span class="math notranslate nohighlight">\(y_2^*\)</span>, …, <span class="math notranslate nohighlight">\(y_N^*\)</span>},чтобы
+функция прибыли <span class="math notranslate nohighlight">\(J_n\)</span> достигла максимума</p>
+<p><span class="math notranslate nohighlight">\(J_n\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(y_1^*\)</span>, …, <span class="math notranslate nohighlight">\(y_N^*\)</span>)=max
+<span class="math notranslate nohighlight">\(J_n\)</span>(<span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(y_1\)</span>, …,<span class="math notranslate nohighlight">\(y_n\)</span>)</p>
+<p>Принцип оптимальности Беллмана утверждает, что на последовательности
+оптимальных управлений {<span class="math notranslate nohighlight">\(y_1^*\)</span>, <span class="math notranslate nohighlight">\(y_2^*\)</span>, …,
+<span class="math notranslate nohighlight">\(y_N^*\)</span>} должна достигать максимума каждая из функций</p>
+<p><span class="math notranslate nohighlight">\(f_n\)</span>(<span class="math notranslate nohighlight">\(x_{n-1}\)</span>, <span class="math notranslate nohighlight">\(y_n\)</span>, <span class="math notranslate nohighlight">\(y_n{n+1}\)</span>, …, <span class="math notranslate nohighlight">\(y_N\)</span>)=<span class="math notranslate nohighlight">\(h_n\)</span>(<span class="math notranslate nohighlight">\(x_{n-1}\)</span>,
+<span class="math notranslate nohighlight">\(y_n\)</span>)+<span class="math notranslate nohighlight">\(h_{n+1}\)</span>(<span class="math notranslate nohighlight">\(x_n\)</span>,
+<span class="math notranslate nohighlight">\(y_{n+1}\)</span>)+…+<span class="math notranslate nohighlight">\(h_N\)</span>(<span class="math notranslate nohighlight">\(x_{N-1}\)</span>, <span class="math notranslate nohighlight">\(y_N\)</span>),
+<span class="math notranslate nohighlight">\({\qquad}\)</span> n=<span class="math notranslate nohighlight">\({\overline{1,N}}\)</span>.</p>
+<p>Если ввести обозначения</p>
+<p><span class="math notranslate nohighlight">\(\varphi_n(x_{n-1})\)</span>=max <span class="math notranslate nohighlight">\(f_n\)</span>(<span class="math notranslate nohighlight">\(x_{n-1}\)</span>,
+<span class="math notranslate nohighlight">\(y_n\)</span>, <span class="math notranslate nohighlight">\(y_n{n+1}\)</span>, …, <span class="math notranslate nohighlight">\(y_N\)</span>) <span class="math notranslate nohighlight">\({\qquad}\)</span>,</p>
+<p>то из принципа оптимальности Беллмана вытекает, что функции
+<span class="math notranslate nohighlight">\(\varphi_n(x_{n-1})\)</span> должны удовлетворять следующим функциональным
+уравнениям Беллмана:</p>
+<p><span class="math notranslate nohighlight">\(\varphi_n(x_{n-1})\)</span>=max[
+<span class="math notranslate nohighlight">\(\varphi_{n+1}(g_n(x_{n-1},y_n))+h_n(x_{n-1},y_n)\)</span>]
+<span class="math notranslate nohighlight">\({\qquad}\)</span> n=<span class="math notranslate nohighlight">\({\overline{1,N}}\)</span>.</p>
+<p>Решение уравнений Беллмана позволяет найти последовательность
+оптимальных управлений и оптимальное значение функции прибыли.</p>
+<p>Замечание. Для того, чтобы методом динамического программирования
+находить не максимум функции прибыли, как было изложено выше, а минимум
+функции затрат достаточно лишь заменить во всех соответствующих формулах
+настоящего параграфа максимум на минимум.</p>
+</div>
+<div class="section" id="id3">
+<h2>4.2. Практическое применение распределения средств<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id4">
+<h3>4.2.1. Пример решения задачи о распределении средств<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Используем метод динамического программирования для решения следующей
+задачи.</p>
+<p>Составить план распределения суммы в 4 миллиона долларов между тремя
+предприятиями <span class="math notranslate nohighlight">\(\text{П}_1\)</span>, <span class="math notranslate nohighlight">\(\text{П}_2\)</span>,
+<span class="math notranslate nohighlight">\(\text{П}_3\)</span>, приносящий наибольшую прибыль, если в каждое из
+предприятий может быть вложено 1, 2, 3 или 4 миллиона долларов, а
+прибыль каждого из предприятий задана в Таблице 1:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 1</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\text{П}_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{П}_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{П}_3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>20</p></td>
+<td><p>22</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>20</p></td>
+<td><p>18</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>20</p></td>
+<td><p>17</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>18</p></td>
+<td><p>16</p></td>
+<td><p>19</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Решение:</strong> Пусть <span class="math notranslate nohighlight">\(h_1\)</span>, <span class="math notranslate nohighlight">\(h_2\)</span>, <span class="math notranslate nohighlight">\(h_3\)</span> - прибыли
+(млн.долл.) предприятий <span class="math notranslate nohighlight">\(\text{П}_1\)</span>, <span class="math notranslate nohighlight">\(\text{П}_2\)</span>,
+<span class="math notranslate nohighlight">\(\text{П}_3\)</span>, соответственно. Тогда, пересчитывая данные из
+Таблицы 1, получим следующую Таблицу 2:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 2</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(h_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(h_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(h_3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0,2</p></td>
+<td><p>0,22</p></td>
+<td><p>0,25</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0,4</p></td>
+<td><p>0,36</p></td>
+<td><p>0,46</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0,6</p></td>
+<td><p>0,51</p></td>
+<td><p>0,45</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0,72</p></td>
+<td><p>0,64</p></td>
+<td><p>0,76</p></td>
+</tr>
+</tbody>
+</table>
+<p>Разобьем процесс выделения средств предприятиям на 3 этапа: на первом
+этапе выделяется <span class="math notranslate nohighlight">\(y_1\)</span> средств предприятию <span class="math notranslate nohighlight">\(\text{П}_1\)</span>, на
+втором – <span class="math notranslate nohighlight">\(y_2\)</span> средств предприятию <span class="math notranslate nohighlight">\(\text{П}_2\)</span>, на третьем
+– <span class="math notranslate nohighlight">\(y_3\)</span> средств предприятию <span class="math notranslate nohighlight">\(\text{П}_3\)</span>.</p>
+<p>Будем считать состоянием системы <span class="math notranslate nohighlight">\(x_i\)</span>(i=0,1,2,3) ту сумму
+средств, которая осталась нераспределенной после i-го этапа. Поскольку
+необходимо распределить все 4 миллиона долларов, то <span class="math notranslate nohighlight">\(x_0\)</span>=4.
+Тогда</p>
+<p><span class="math notranslate nohighlight">\(x_n\)</span>=<span class="math notranslate nohighlight">\(x_{n-1}\)</span>-<span class="math notranslate nohighlight">\(y_n\)</span>, <span class="math notranslate nohighlight">\({\qquad}\)</span> n=1,2,3.</p>
+<p>Заметим, что на третьем этапе выделения средств весь остаток <span class="math notranslate nohighlight">\(x_2\)</span>
+вкладывается в предприятие <span class="math notranslate nohighlight">\(\text{П}_3\)</span>, поэтому</p>
+<p><span class="math notranslate nohighlight">\(y_3\)</span>=<span class="math notranslate nohighlight">\(x_2\)</span>.</p>
+<p>Воспользуемся уравнениями Беллмана для N=3. Тогда уравнения</p>
+<p><span class="math notranslate nohighlight">\(\varphi_n(x_{n-1})\)</span>=max[
+<span class="math notranslate nohighlight">\(\varphi_{n+1}(g_n(x_{n-1},y_n))+h_n(x_{n-1},y_n)\)</span>]
+<span class="math notranslate nohighlight">\({\qquad}\)</span> n=<span class="math notranslate nohighlight">\({\overline{1,N}}\)</span>.</p>
+<p>примут следующий вид:</p>
+<p><span class="math notranslate nohighlight">\(\varphi_3(x_2)\)</span>=max <span class="math notranslate nohighlight">\(h_3(y_3)\)</span>, <span class="math notranslate nohighlight">\({\qquad}\)</span>
+<span class="math notranslate nohighlight">\(x_2\)</span>=0,1,2,3,4,</p>
+<p><span class="math notranslate nohighlight">\(\varphi_2(x_1)\)</span>=max [<span class="math notranslate nohighlight">\(h_2(y_2)+\varphi_3(x_1-y_2)\)</span>],
+<span class="math notranslate nohighlight">\({\qquad}\)</span> <span class="math notranslate nohighlight">\(x_1\)</span>=0,1,2,3,4,</p>
+<p><span class="math notranslate nohighlight">\(\varphi_1(x_0)\)</span>=max [<span class="math notranslate nohighlight">\(h_1(y_1)+\varphi_2(x_0-y_1)\)</span>],
+<span class="math notranslate nohighlight">\({\qquad}\)</span> <span class="math notranslate nohighlight">\(x_0\)</span>=4.</p>
+<p>Обозначим значения управлений <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span>, <span class="math notranslate nohighlight">\(y_3\)</span>, на
+которых достигается максимум в соотношениях, символами <span class="math notranslate nohighlight">\(y_1^*\)</span>,
+<span class="math notranslate nohighlight">\(y_2^*\)</span>, <span class="math notranslate nohighlight">\(y_3^*\)</span>, соответственно, и, воспользовавшись
+Таблицей 2, заполним по формулам Таблицу 3:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 3</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 6%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 6%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,25</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,25</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,46</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,46</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,45</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,45</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,76</p></td>
+<td><p>0,76</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<p>Воспользовавшись Таблицей 2 и формулами, заполним Таблицу 4:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 4</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 4%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0+0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0+0,25</p></td>
+<td><p>0,22+0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,25</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0+0,46</p></td>
+<td><p>0,22+0,25</p></td>
+<td><p>0,36+0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,47</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0+0,45</p></td>
+<td><p>0,22+0,46</p></td>
+<td><p>0,36+0,25</p></td>
+<td><p>0,51+0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0,68</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0+0,76</p></td>
+<td><p>0,22+0,45</p></td>
+<td><p>0,36+0,46</p></td>
+<td><p>0,51+0,25</p></td>
+<td><p>0,64+0</p></td>
+<td><p>0,82</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Воспользовавшись Таблицей 2 и формулой, заполним Таблицу 5:</p>
+<div class="line-block">
+<div class="line"><em>Таблица 5</em></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 4%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0+0,82</p></td>
+<td><p>0,2+0,68</p></td>
+<td><p>0,4+0,47</p></td>
+<td><p>0,6+0,25</p></td>
+<td><p>0,72+0</p></td>
+<td><p>0,88</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Из Таблицы 5 вытекает, что оптимальным управлением будет
+<span class="math notranslate nohighlight">\(y_1^*\)</span>=1, при этом оптимальная прибыль равна 0,88. Далее
+получаем</p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span>=<span class="math notranslate nohighlight">\(x_0-y_1^*\)</span>=4-1=3,
+<span class="math notranslate nohighlight">\(\varphi_2(x_1)\)</span>=<span class="math notranslate nohighlight">\(\varphi_2(3)\)</span>=0,68,
+<span class="math notranslate nohighlight">\(y_2^*\)</span>=1;</p>
+<p><span class="math notranslate nohighlight">\(x_2\)</span>=<span class="math notranslate nohighlight">\(x_1-y_2^*\)</span>=3-1=2,
+<span class="math notranslate nohighlight">\(\varphi_3(x_2)\)</span>=<span class="math notranslate nohighlight">\(\varphi_3(2)\)</span>=0,46,
+<span class="math notranslate nohighlight">\(y_3^*\)</span>=2.</p>
+<p>Таким образом, наиболее оптимальным является вложение в предприятия
+<span class="math notranslate nohighlight">\(\text{П}_1\)</span>, <span class="math notranslate nohighlight">\(\text{П}_2\)</span>, <span class="math notranslate nohighlight">\(\text{П}_3\)</span> денежных
+средств в размере 1, 1 и 2 миллионов долларов, соответственно. В этом
+случае прибыль будет максимальной и составит 0,88 миллиона долларов.
+Решение задачи завершено.</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>4.3. Перейти к практике<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hyperlink">Посмотреть примеры и решить задачу</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="maxflow.html" class="btn btn-neutral float-right" title="5. Задача о максимальном потоке" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="transport.html" class="btn btn-neutral" title="3. Транспортная задача" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dubanov Rodion, Lapteva Elena, Yankin George.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'25.05.2020',
+            LANGUAGE:'ru',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/jquery.fancybox.min.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('.image-reference').fancybox();
+    })
+  </script>
+
+</body>
+</html>
